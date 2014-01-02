@@ -1,13 +1,7 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
+namespace Application;
 
-return array(
+return array(   
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -17,6 +11,28 @@ return array(
                     'defaults' => array(
                         'controller' => 'Application\Controller\Index',
                         'action'     => 'index',
+                    ),
+                ),
+            ),
+            'login' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/login',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Auth',
+                        'action'        => 'login',
+                    ),
+                ),
+            ),
+            'signup' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/signup',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Auth',
+                        'action'        => 'signup',
                     ),
                 ),
             ),
@@ -73,7 +89,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Auth'  => 'Application\Controller\AuthController',
         ),
     ),
     'view_manager' => array(
@@ -85,6 +102,7 @@ return array(
         'template_map' => array(
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+            'index/jumbotron'         => __DIR__ . '/../view/application/index/jumbotron.phtml', // inject jimbotron into the layout
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),

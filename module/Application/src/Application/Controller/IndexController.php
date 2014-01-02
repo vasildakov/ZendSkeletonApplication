@@ -1,10 +1,8 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * Index Controller
+ * 
+ * @author Vasil Dakov <vasildakov@gmail.com>
  */
 
 namespace Application\Controller;
@@ -16,6 +14,20 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        return new ViewModel();
+    	/*
+		$entityManager = $this->getEntityManager();
+	    $user = new \Core\Entity\User();
+	    $user->setUsername('Vasil Dakov')->setEmail("vasildakov@gmail.com");
+	    $entityManager->persist($user);
+	    $entityManager->flush();
+	    die(var_dump($user->getId()));
+		*/
+	    return new ViewModel();
+    }
+
+
+    public function getEntityManager() 
+    {
+    	return $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
     }
 }

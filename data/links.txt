@@ -1,0 +1,19 @@
+ZF2 cheatsheet
+http://zf2cheatsheet.com/#controller
+
+ZF2 doctrine example
+https://github.com/psamatt/zf2-doctrine-example
+
+ZF2 authentication
+http://samsonasik.wordpress.com/2012/10/23/zend-framework-2-create-login-authentication-using-authenticationservice-with-rememberme/
+
+Doctrine 2 Inheritance Mapping with Association
+http://stackoverflow.com/questions/5715777/doctrine-2-inheritance-mapping-with-association
+
+Doctrine 2 & ZF2
+http://marco-pivetta.com/doctrine-orm-zf2-tutorial/#/2
+
+
+Zend Unit testing
+http://zf2.readthedocs.org/en/latest/tutorials/unittesting.html
+
