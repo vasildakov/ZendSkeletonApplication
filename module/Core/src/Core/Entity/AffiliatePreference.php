@@ -31,4 +31,37 @@ class AffiliatePreference
      * })
      */
     private $affiliate;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set affiliate
+     *
+     * @param \Core\Entity\Affiliate $affiliate
+     * @return AffiliatePreference
+     */
+    public function setAffiliate(\Core\Entity\Affiliate $affiliate = null)
+    {
+        $this->affiliate = $affiliate;
+
+        return $this;
+    }
+
+    /**
+     * Get affiliate
+     *
+     * @return \Core\Entity\Affiliate 
+     */
+    public function getAffiliate()
+    {
+        return $this->affiliate;
+    }
 }

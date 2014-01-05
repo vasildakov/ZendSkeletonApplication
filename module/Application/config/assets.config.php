@@ -26,16 +26,22 @@ return array(
 
         'default' => array(
             'assets' => array(
-                '@base_js',
-                '@base_css',
+                '@head_js',
+                '@head_css',
             ),
         ),
         
         'routes' => array(
+            /* 
             'home' => array(
-                '@base_js',
-                '@base_css',
+                '@head_js',
+                '@head_css',
             ),
+            'backoffice' => array(
+                '@head_js',
+                '@head_css',
+            ), 
+            */
         ),
 
         'modules' => array(
@@ -43,7 +49,7 @@ return array(
                 'root_path' => __DIR__ . '/../assets',
 
                 'collections' => array(
-                    'base_css' => array(
+                    'head_css' => array(
                         'assets' => array(
                             'css/style.css',
                             'css/bootstrap.min.css'
@@ -57,7 +63,7 @@ return array(
                             ),
                         ),
                     ),
-                    'base_js' => array(
+                    'head_js' => array(
                         'assets' => array(
                             'js/html5shiv.js',
                             'js/jquery.min.js',

@@ -54,6 +54,7 @@ class Site
         return $this->id;
     }
 
+
     /**
      * Set url
      *
@@ -63,7 +64,6 @@ class Site
     public function setUrl($url)
     {
         $this->url = $url;
-
         return $this;
     }
 
@@ -88,9 +88,9 @@ class Site
     public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
-
         return $this;
     }
+
 
     /**
      * Get created_at

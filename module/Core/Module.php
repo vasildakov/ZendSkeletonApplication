@@ -7,7 +7,10 @@ use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Controller\PluginManager;
 use Zend\EventManager\EventInterface;
 
+use Core\View\Helper\AbsoluteUrl;
+
 class Module {
+
 
     public function onBootstrap(EventInterface $e)
     {
@@ -49,11 +52,28 @@ class Module {
                     $entityManager = $serviceManager->get('Doctrine\ORM\EntityManager');
                     $form = new \Core\Form\SignupForm($entityManager);
                     return $form;
-                }
+                },
             ),
-            'invokables' => array(),
+            'invokables' => array(
+                'loggingService'  => 'Core\Service\LoggingService',
+                'greetingService' => 'Core\Service\GreetingService',
+            ),
             'services' => array(),
             'shared' => array(),
+        );
+    }
+
+
+    public function getViewHelperConfig()
+    {
+        return array(
+            'factories' => array(
+                // the array key here is the name you will call the view helper by in your view scripts
+                'absoluteUrl' => function($serviceManager) {
+                    $locator = $serviceManager->getServiceLocator(); // $sm is the view helper manager, so we need to fetch the main service manager
+                    return new AbsoluteUrl($locator->get('Request'));
+                },
+            ),
         );
     }
 

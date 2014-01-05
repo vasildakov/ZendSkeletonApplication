@@ -1,4 +1,6 @@
 <?php
+// ./module/Application/src/Application/Controller/AuthController.php
+
 /**
  * Authentication Controller
  * 
@@ -25,7 +27,8 @@ class AuthController extends AbstractActionController
 
     	$request = $this->getRequest();
 
-    	if($request->isPost()) {
+    	if($request->isPost()) 
+        {
     		$form->setData($request->getPost());
     		var_dump($request->getPost());
     	}
@@ -34,6 +37,7 @@ class AuthController extends AbstractActionController
     		array('form' => $form)
     	);
     }
+
 
 
     public function logoutAction() 
@@ -52,11 +56,21 @@ class AuthController extends AbstractActionController
     	$form = $this->getServiceLocator()->get('SignupForm');
 
     	$request = $this->getRequest();
-    	if($request->isPost()) {
+
+    	if($request->isPost()) 
+        {
     		$form->setData($request->getPost());
 
-    		var_dump($request->getPost());
-    		
+            if ($form->isValid()) 
+            {
+                $validData = $request->getPost();
+                var_dump($validData);
+            } 
+            else 
+            {
+                $messages = $form->getMessages();
+                var_dump($messages);
+            }
     	}
 
 

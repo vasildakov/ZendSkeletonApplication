@@ -1,4 +1,6 @@
 <?php
+// ./module/Backoffice/src/Backoffice/Controller/AffiliateController.php
+
 /**
  * Affiliate Controller
  * 
@@ -46,6 +48,7 @@ class AffiliateController extends AbstractActionController
         $query = $qb->getQuery();
 
     	$adapter = new DoctrinePaginatorAdapter(new DoctrinePaginator($query));
+        
         $paginator = new ZendPaginator($adapter);
         $paginator->setDefaultItemCountPerPage(10);
 

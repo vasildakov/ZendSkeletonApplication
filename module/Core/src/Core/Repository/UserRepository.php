@@ -9,16 +9,20 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class UserRepository extends EntityRepository {
     
 
-
-    public function getPaginated($params) 
+    public function getTest() 
     {
-        $db = $this->select('u');
-        $db = $this->from('Core\Entity\User', 'u')
 
-        return $db->getQuery();
-            
-            
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u');
+        $qb->from('Core\Entity\Affiliate', 'u');
+        $qb->orderBy('u.id');
+        $qb->setFirstResult( $offset );
+        $qb->setMaxResults( $limit );
+        
+        return $qb->getQuery()->getResult();
     }
+
+
 
 
     public function findAll() 
@@ -49,5 +53,6 @@ class UserRepository extends EntityRepository {
 
     	$paginator = new Paginator($query);
     	return $paginator;
-    }    
+    }   
+
 }

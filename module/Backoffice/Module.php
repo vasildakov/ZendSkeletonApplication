@@ -1,4 +1,5 @@
 <?php
+// ./module/Backoffice/src/Module.php
 
 namespace Backoffice;
 

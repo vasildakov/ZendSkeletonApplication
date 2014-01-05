@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * 
  * @ORM\Entity
  * @ORM\Table(name="affiliate",indexes={@ORM\Index(name="fk_user_role_id", columns={"role_id"})})
+ * @ORM\Entity(repositoryClass="Core\Repository\AffiliateRepository")
  */
 
 class Affiliate extends User
@@ -44,9 +45,23 @@ class Affiliate extends User
     /**
      * @var string
      *
-     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
-    private $firstName;
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="surname", type="string", length=255, nullable=true)
+     */
+    private $surname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     */
+    private $email;
 
 
     /**
@@ -134,22 +149,70 @@ class Affiliate extends User
      * @param string $firstName
      * @return User
      */
-    public function setFirstName($firstName)
+    public function setName($name)
     {
-        $this->firstName = $firstName;
+        $this->name = $name;
 
         return $this;
     }
 
 
     /**
-     * Get firstName
+     * Get name
      *
      * @return string 
      */
-    public function getFirstName()
+    public function getName()
     {
-        return $this->firstName;
+        return $this->name;
+    }
+
+    /**
+     * Set surname
+     *
+     * @param string $surname
+     * @return User
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    /**
+     * Get surname
+     *
+     * @return string 
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
 
@@ -237,4 +300,27 @@ class Affiliate extends User
         return $this->created_at->format('Y-m-d');
     }
 
+
+    /**
+     * Set affiliate_field
+     *
+     * @param string $affiliateField
+     * @return Affiliate
+     */
+    public function setAffiliateField($affiliateField)
+    {
+        $this->affiliate_field = $affiliateField;
+
+        return $this;
+    }
+
+    /**
+     * Get affiliate_field
+     *
+     * @return string 
+     */
+    public function getAffiliateField()
+    {
+        return $this->affiliate_field;
+    }
 }

@@ -39,6 +39,22 @@ class UserSearchForm extends Form
         ));
 
         $this->add(array(
+            'name' => 'name',
+            'attributes' => array(
+                'type'  => 'text',
+                'placeholder' => 'Name',
+                'class' => 'form-control'
+            ),
+            'options' => array(
+                'label' => 'Username',
+                'label_attributes' => array(
+                    'for' => 'Name',
+                    'class'  => 'sr-only'
+                ),
+            ),
+        ));
+
+        $this->add(array(
             'name' => 'submit',
             'attributes' => array(
                 'type'  => 'submit',

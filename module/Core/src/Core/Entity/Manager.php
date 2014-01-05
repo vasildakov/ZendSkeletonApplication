@@ -73,4 +73,50 @@ class Manager extends User
         return $this->username;
     }
 
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Manager
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+
+    /**
+     * Set manager_field
+     *
+     * @param string $managerField
+     * @return Manager
+     */
+    public function setManagerField($managerField)
+    {
+        $this->manager_field = $managerField;
+        return $this;
+    }
+
+    /**
+     * Get manager_field
+     *
+     * @return string 
+     */
+    public function getManagerField()
+    {
+        return $this->manager_field;
+    }
 }

@@ -6,6 +6,8 @@
  */
 
 namespace Core\Form;
+// see https://github.com/doctrine/DoctrineModule/blob/master/docs/validator.md
+use DoctrineModule\Validator\NoObjectExists as NoObjectExistsValidator;
 
 use DoctrineModule\Persistence\ObjectManagerAwareInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -48,7 +50,8 @@ class SignupForm extends Form implements ObjectManagerAwareInterface
             'attributes' => array(
                 'type'  => 'text',
                 'placeholder' => 'Username',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'required' => 'required',
             ),
             'options' => array(
                 'label' => 'Username',
@@ -57,6 +60,14 @@ class SignupForm extends Form implements ObjectManagerAwareInterface
                     'class'  => 'control-label col-sm-2'
                 ),
             ),
+            /* 'validators' => array(
+                'name' => 'DoctrineModule\Validator\NoObjectExists',
+                'options' => array(
+                    'object_repository' => $this->getObjectManager()->getRepository('Core\Entity\Affiliate'),
+                    'fields'            => 'username',
+                    'messages' => array( \DoctrineModule\Validator\NoObjectExists::ERROR_OBJECT_FOUND => "This object with code already exists in database." )
+                )
+            ) */
         ));
 
 
@@ -89,7 +100,8 @@ class SignupForm extends Form implements ObjectManagerAwareInterface
                 'type'  => 'select',
                 'class' => 'form-control'
             ),
-            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            // 'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'type' => 'Zend\Form\Element\Select',
             'options' => array(
                 'label' => 'Language',
                 'empty_option'    => '',
@@ -97,9 +109,11 @@ class SignupForm extends Form implements ObjectManagerAwareInterface
                     'for' => 'Language',
                     'class'  => 'control-label col-sm-2'
                 ),
-                'object_manager' => $this->getObjectManager(),
-                'target_class' => 'Core\Entity\Language',
-                'property' => 'name',
+                'value_options' => $this->getLanguages(),
+                // we don't need all the languages but only those with status 1
+                // 'object_manager' => $this->getObjectManager(),
+                // 'target_class' => 'Core\Entity\Language',
+                // 'property' => 'name',
             )
         ));
 
@@ -148,6 +162,18 @@ class SignupForm extends Form implements ObjectManagerAwareInterface
             ),
         ));        
 
+        // $entityManager = $serviceManager->get('Doctrine\ORM\EntityManager');
+        $userInput = $this->getInputFilter()->get('username');
+        $noObjectExistsValidator = new NoObjectExistsValidator(array(
+            'object_repository' => $this->getObjectManager()->getRepository('Core\Entity\Affiliate'),
+            'fields' => 'username',
+            'messages' => array(
+                'objectFound' => 'Sorry guy, a user with this username already exists !'
+            )
+        ));        
+
+        $userInput->getValidatorChain()->attach($noObjectExistsValidator);
+
     }
 
 
@@ -158,9 +184,25 @@ class SignupForm extends Form implements ObjectManagerAwareInterface
         return $this;
     }
  
+
     public function getObjectManager()
     {
         return $this->objectManager;
+    }
+
+
+    public function getLanguages() 
+    {
+        $array = array();
+
+        $languages = $this->getObjectManager()->getRepository('Core\Entity\Language')->findBy(array('status' => 1));
+
+        foreach ($languages as $key => $language) 
+        {
+            $array[$language->getId()] = $language->getName();
+        }
+
+        return $array;
     }
 
 

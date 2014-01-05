@@ -3,16 +3,11 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        
-        <!-- Assetic Styles and Scripts -->
-        <?php
-            echo $this->plugin('HeadLink');
-            echo $this->plugin('HeadStyle');
-            echo $this->plugin('HeadScript');
-        ?>
-        <link href="/assets/base_css.css" media="screen" rel="stylesheet" type="text/css">
-        <script type="text/javascript" src="/assets/base_js.js"></script>
 
+        <!-- Assetic Styles and Scripts -->
+        <?php echo $this->plugin('HeadLink'); ?>
+        <?php echo $this->plugin('HeadStyle'); ?>
+        <?php echo $this->plugin('HeadScript'); ?>
     </head>
 
     <body>
@@ -25,7 +20,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="<?php echo $this->url('backoffice') ?>">
-                        <img src="<?php echo $this->basePath('') ?>" alt="" />&nbsp;<?php echo $this->translate('Backoffice') ?>
+                        <?php echo $this->translate('BackOffice') ?>
                     </a>
                 </div>
                 <div class="collapse navbar-collapse">
@@ -34,13 +29,21 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown">Users <b class="caret"></b></a> 
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo $this->url('backoffice/manager'); ?>">Managers</a></li>
-                                <li><a href="<?php echo $this->url('backoffice/affiliate'); ?>">Affiliates</a></li>
+                                <li><a href="<?php echo $this->url('backoffice/manager'); ?>"><?php echo $this->translate('Managers') ?></a></li>
+                                <li><a href="<?php echo $this->url('backoffice/affiliate'); ?>"><?php echo $this->translate('Affiliates') ?></a></li>
                             </ul>
-                            
                         </li>
                         <li><a href="<?php echo $this->url('backoffice/site') ?>"><?php echo $this->translate('Sites') ?></a></li>
                         <li><a href="<?php echo $this->url('backoffice') ?>"><?php echo $this->translate('Campaigns') ?></a></li>
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"><?php echo $this->translate('Resources') ?> <b class="caret"></b></a> 
+                            <ul class="dropdown-menu">
+                                <li><a href="<?php echo $this->url('backoffice/country'); ?>"><?php echo $this->translate('Countries') ?></a></li>
+                                <li><a href="<?php echo $this->url('backoffice/language'); ?>"><?php echo $this->translate('Languages') ?></a></li>
+                                <li><a href="<?php echo $this->url('backoffice/currency'); ?>"><?php echo $this->translate('Currencies') ?></a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

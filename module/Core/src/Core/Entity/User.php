@@ -47,16 +47,16 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
-    private $firstName;
+    private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="surname", type="string", length=255, nullable=true)
      */
-    private $lastName;
+    private $surname;
 
     /**
      * @var string
@@ -82,7 +82,6 @@ class User
 
 
 
-
     /**
      * Get id
      *
@@ -93,6 +92,7 @@ class User
         return $this->id;
     }
 
+
     /**
      * Set username
      *
@@ -102,9 +102,9 @@ class User
     public function setUsername($username)
     {
         $this->username = $username;
-
         return $this;
     }
+
 
     /**
      * Get username
@@ -116,6 +116,7 @@ class User
         return $this->username;
     }
 
+
     /**
      * Set password
      *
@@ -125,9 +126,9 @@ class User
     public function setPassword($password)
     {
         $this->password = $password;
-
         return $this;
     }
+
 
     /**
      * Get password
@@ -139,51 +140,54 @@ class User
         return $this->password;
     }
 
+
     /**
-     * Set firstName
+     * Set name
      *
-     * @param string $firstName
+     * @param string $name
      * @return User
      */
-    public function setFirstName($firstName)
+    public function setName($name)
     {
-        $this->firstName = $firstName;
-
+        $this->name = $name;
         return $this;
     }
 
+
     /**
-     * Get firstName
+     * Get name
      *
      * @return string 
      */
-    public function getFirstName()
+    public function getName()
     {
-        return $this->firstName;
+        return $this->name;
     }
 
+
     /**
-     * Set lastName
+     * Set surname
      *
-     * @param string $lastName
+     * @param string $surname
      * @return User
      */
-    public function setLastName($lastName)
+    public function setSurname($surname)
     {
-        $this->lastName = $lastName;
-
+        $this->surname = $surname;
         return $this;
     }
 
+
     /**
-     * Get lastName
+     * Get surname
      *
      * @return string 
      */
-    public function getLastName()
+    public function getSurname()
     {
-        return $this->lastName;
+        return $this->surname;
     }
+
 
     /**
      * Set email
@@ -194,9 +198,9 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
+
 
     /**
      * Get email
@@ -208,6 +212,7 @@ class User
         return $this->email;
     }
 
+
     /**
      * Set created_at
      *
@@ -217,9 +222,9 @@ class User
     public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
-
         return $this;
     }
+
 
     /**
      * Get created_at
@@ -231,6 +236,7 @@ class User
         return $this->created_at;
     }
 
+
     /**
      * Set status
      *
@@ -240,7 +246,6 @@ class User
     public function setStatus($status)
     {
         $this->status = $status;
-
         return $this;
     }
 
@@ -264,7 +269,6 @@ class User
     public function setRole(\Core\Entity\Role $role = null)
     {
         $this->role = $role;
-
         return $this;
     }
 

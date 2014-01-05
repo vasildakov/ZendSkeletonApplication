@@ -1,0 +1,7 @@
+
+
+./vendor/bin/doctrine-module orm:schema-tool:drop --force
+./vendor/bin/doctrine-module orm:schema-tool:create
+./vendor/bin/doctrine-module data-fixture:import
+
+./vendor/bin/doctrine-module orm:generate-entities --update-entities="true" --generate-methods="true" module/Core/src/

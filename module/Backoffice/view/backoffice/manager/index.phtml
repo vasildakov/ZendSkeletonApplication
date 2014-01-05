@@ -27,6 +27,8 @@
 		            <th><input type="checkbox"></th>
 		            <th>ID</th>
 		            <th>Username</th>
+		            <th>Name</th>
+		            <th>Surname</th>
 		            <th>Actions</th>
 		        </tr>
 		    </thead>
@@ -36,6 +38,8 @@
 		    		<td><input type="checkbox"></td>
 		    		<td><?php echo $manager->getId(); ?></td>
 		    		<td><?php echo $manager->getUsername(); ?></td>
+		    		<td><?php #echo $manager->getName(); ?></td>
+		    		<td><?php #echo $manager->getSurname(); ?></td>
 		    		<td>Edit | View</td>
 		    	</tr>
 		    <?php endforeach; endif; ?>

@@ -1,4 +1,6 @@
 <?php
+// ./module/Backoffice/src/Backoffice/Controller/UserController.php
+
 /**
  * User Controller
  * 
@@ -19,36 +21,32 @@ use Zend\View\Model\ViewModel;
 class UserController extends AbstractActionController
 {
 
+    public function getEntityManager() 
+    {
+        return $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+    }
+
+
     public function indexAction()
     {
  
+        $request = $this->getRequest();
+        $post = $request->getPost();
 
+        $query = $this->getEntityManager()->getRepository('Core\Entity\Affiliate')->getSearchQuery($post);
+
+        //$paginator = new DoctrinePaginator($query, false);
+        //var_dump($paginator);
 
     	$form = new \Core\Form\UserSearchForm();
-    	$request = $this->getRequest();
+        $form->setData($request->getPost());
 
 		
-		$qb = $em->createQueryBuilder();
-		$qb->from('Core\Entity\Affiliate', 'u');
-		$qb->select("u");
 
-		if($request->isPost()) {
-
-    		$form->setData($request->getPost());
-
-		    if($this->params()->fromPost('username')) {
-	            $qb->where('u.username = :username');
-	            $qb->setParameter('username', $this->params()->fromPost('username'));
-		    } 
-
-        	$qb->orderBy('u.id', 'desc');
-    	} 
-
-        $query = $qb->getQuery();
 
     	$adapter = new DoctrinePaginatorAdapter(new DoctrinePaginator($query));
         $paginator = new ZendPaginator($adapter);
-        $paginator->setDefaultItemCountPerPage(10);
+        $paginator->setDefaultItemCountPerPage(8);
 
         $page = (int)$this->params()->fromQuery('page');
         if($page) $paginator->setCurrentPageNumber($page); 
@@ -59,4 +57,32 @@ class UserController extends AbstractActionController
 	    	'paginator' => $paginator,
 	    ));
     }
+
+
+
+    public function test() 
+    {
+        /*
+        $qb = $entityManager->createQueryBuilder();
+        $qb->from('Core\Entity\Affiliate', 'u');
+        $qb->select("u");
+
+        if($request->isPost()) {
+
+            $form->setData($request->getPost());
+
+            if($this->params()->fromPost('username')) {
+                $qb->where('u.username = :username');
+                $qb->setParameter('username', $this->params()->fromPost('username'));
+            } 
+
+            $qb->orderBy('u.id', 'desc');
+        } 
+
+        $query = $qb->getQuery(); 
+        */
+    }
+
+
+
 }

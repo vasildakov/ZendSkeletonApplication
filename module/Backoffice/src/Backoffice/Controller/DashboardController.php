@@ -1,4 +1,6 @@
 <?php
+// ./module/Backoffice/src/Backoffice/Controller/DashboardController.php
+
 /**
  * Dashboard Controller
  * 

@@ -1,18 +1,22 @@
 <h1>Users</h1>
 <div class="row">
-<?php
-$form = $this->form;
-$form->prepare();
-echo $this->form()->openTag($form);
-?>
+	<?php
+		$form = $this->form;
+		$form->prepare();
+		echo $this->form()->openTag($form);
+	?>
 
-        <div class="form-group">
-            <?php echo $this->formLabel($form->get('username')); ?>
-            <?php echo $this->formInput($form->get('username')); ?>
-        </div>
+    <div class="form-group">
+        <?php #echo $this->formLabel($form->get('username')); ?>
+        <?php echo $this->formInput($form->get('username')); ?>
+    </div>
 
+    <div class="form-group">
+        <?php #echo $this->formLabel($form->get('name')); ?>
+        <?php echo $this->formInput($form->get('name')); ?>
+    </div>
 
-        <?php echo $this->formRow($form->get('submit')); ?>
+    <?php echo $this->formRow($form->get('submit')); ?>
 </div>
 
 <?php echo $this->form()->closeTag();?>
@@ -25,19 +29,37 @@ echo $this->form()->openTag($form);
 		            <th><input type="checkbox"></th>
 		            <th>ID</th>
 		            <th>Username</th>
+		            <th>Name</th>
+		            <th>Surname</th>
+		            <th>Email</th>
 		            <th>Actions</th>
 		        </tr>
 		    </thead>
 		    <tbody>
-		    <?php if(!empty($paginator)): foreach ($paginator as $site) : ?>
+		    <?php if(!empty($paginator)): foreach ($paginator as $affiliate) : ?>
 		    	<tr>
 		    		<td><input type="checkbox"></td>
-		    		<td><?php echo $site->getId(); ?></td>
-		    		<td><?php echo $site->getUsername(); ?></td>
+		    		<td><?php echo $affiliate->getId(); ?></td>
+		    		<td><a href="#"><?php echo $affiliate->getUsername(); ?></a></td>
+		    		<td><?php echo $affiliate->getName(); ?></td>
+		    		<td><?php echo $affiliate->getSurname(); ?></td>
+		    		<td><?php echo $affiliate->getEmail(); ?></td>
 		    		<td>Edit | View</td>
 		    	</tr>
 		    <?php endforeach; endif; ?>
 		    </tbody>
 		</table>
 	</div>
+</div>
+
+
+<div>
+<?php // add at the end of the file after the table
+echo $this->paginationControl(
+    $this->paginator,
+    'sliding',
+    array('partial/paginator.phtml', 'Backoffice'),
+    array('route' => 'backoffice/user')
+); 
+?>	
 </div>
