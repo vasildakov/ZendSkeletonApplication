@@ -7,6 +7,14 @@ return array(
         'location' => __DIR__ . '/../src/Core/Fixture',
     ),
     'doctrine' => array(
+        'authentication' => array(
+            'orm_default' => array(
+                'object_manager' => 'Doctrine\ORM\EntityManager',
+                'identity_class' => 'Core\Entity\Affiliate',
+                'identity_property' => 'email',
+                'credential_property' => 'password',
+            ),
+        ),
         /*'fixture' => array(
             'Core__fixture' => __DIR__ . '/../src/Core/Fixture',
         ),*/

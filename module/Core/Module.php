@@ -48,10 +48,13 @@ class Module {
             'abstract_factories' => array(),
             'aliases' => array(),
             'factories' => array(
-                'SignupForm' => function($serviceManager) {
+                'Core\Form\SignupForm' => function($serviceManager) {
                     $entityManager = $serviceManager->get('Doctrine\ORM\EntityManager');
                     $form = new \Core\Form\SignupForm($entityManager);
                     return $form;
+                },
+                'Zend\Authentication\AuthenticationService' => function($serviceManager) {
+                    return $serviceManager->get('doctrine.authenticationservice.orm_default');  
                 },
             ),
             'invokables' => array(

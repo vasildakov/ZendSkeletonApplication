@@ -21,6 +21,7 @@ class AuthController extends AbstractActionController
     }
 
 
+
     public function loginAction() 
     {
     	$form = new \Core\Form\LoginForm();
@@ -30,12 +31,21 @@ class AuthController extends AbstractActionController
     	if($request->isPost()) 
         {
     		$form->setData($request->getPost());
-    		var_dump($request->getPost());
+
+            // see https://github.com/acaciovilela/zf2-DoctrineModule/blob/master/docs/authentication.md
+            $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+            $adapter = $authService->getAdapter();
+
+            $adapter->setIdentityValue($request->getPost('email'));
+            $adapter->setCredentialValue(md5($request->getPost('password')));
+            
+            $authResult = $adapter->authenticate();
+            var_dump($authResult);
     	}
 
-    	return new ViewModel(
-    		array('form' => $form)
-    	);
+    	return new ViewModel(array(
+            'form' => $form
+        ));
     }
 
 
@@ -48,12 +58,14 @@ class AuthController extends AbstractActionController
 
     public function signupAction() 
     {
-    	// just a test with manualy injecting doctrine EntityManager
-    	// $entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-    	// $form = new \Core\Form\SignupForm($entityManager);
+    	// (1) injecting doctrine EntityManager in form constructor
+        // $entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        // $form = new \Core\Form\SignupForm($entityManager);
 
-    	// SignupForm form service factory
-    	$form = $this->getServiceLocator()->get('SignupForm');
+
+    	// (2) get form service factory
+    	$form = $this->getServiceLocator()->get('Core\Form\SignupForm');
+        
 
     	$request = $this->getRequest();
 

@@ -45,6 +45,14 @@ class Affiliate extends User
     /**
      * @var string
      *
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     */
+    private $password;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
@@ -142,6 +150,29 @@ class Affiliate extends User
         return $this->username;
     }
 
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = md5($password);
+        return $this;
+    }
+
+
+    /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
 
     /**
      * Set firstName
