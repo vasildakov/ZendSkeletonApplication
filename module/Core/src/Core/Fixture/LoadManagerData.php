@@ -29,10 +29,11 @@ class LoadManagerData implements OrderedFixtureInterface, FixtureInterface
     	{
             $role = $objectManager->find('\Core\Entity\Role', 5);
 
-		    $manager = new \Core\Entity\Manager();
+		    $manager = new \Core\Entity\User();
             $manager->setName($row['name']);
             $manager->setSurname($row['surname']);
 		    $manager->setUsername($row['username']);
+            $manager->setPassword(123456);
 		    $manager->setEmail($row['email']);
 		    $manager->setRole( $role );
 

@@ -171,7 +171,7 @@ class Language
      */
     public function getCreatedAt()
     {
-        return $this->created_at;
+        return $this->created_at->format("Y-m-d");
     }
 
 

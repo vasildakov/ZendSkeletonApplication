@@ -3,13 +3,15 @@ return array(
     // This should be an array of module namespaces used in the application.
     'modules' => array(
         'Application',
-        'Core',
         'Backoffice',
+        'Core',
         'DoctrineModule',
         'DoctrineORMModule',
         'DoctrineDataFixtureModule',
         'ZendDeveloperTools',
-        'AsseticBundle'
+        'AssetManager',
+        'EdpModuleLayouts'
+
     ),
 
     // These are various options for the listeners attached to the ModuleManager

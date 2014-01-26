@@ -1,7 +1,7 @@
 <?php 
 /**
  * http://bigemployee.com/zend-framework-2-pagination-sorting-tutorial/
- * 
+ * https://github.com/tahmina8765/zf2_search_with_pagination_example
  */ 
 ?>
 <?php if ($this->pageCount): ?>
@@ -22,7 +22,7 @@
             <!-- Previous page link -->
             <?php if (isset($this->previous)): ?>
                 <li>
-                    <a href="<?php echo $this->url($this->route); ?>?page=<?php echo $this->previous; ?>">
+                    <a href="<?php echo $this->url($this->route); ?>?page=<?php echo $this->previous; ?>&role=<?=$this->role?>">
                         <?php echo $this->translate("Previous"); ?>
                     </a>
                 </li>
@@ -38,7 +38,7 @@
             <?php foreach ($this->pagesInRange as $page): ?>
                 <?php if ($page != $this->current): ?>
                     <li>
-                        <a href="<?php echo $this->url($this->route);?>?page=<?php echo $page; ?>">
+                        <a href="<?php echo $this->url($this->route);?>?page=<?php echo $page; ?>&role=<?=$this->role?>">
                             <?php echo $page; ?>
                         </a>
                     </li>
@@ -52,7 +52,7 @@
             <!-- Next page link -->
             <?php if (isset($this->next)): ?>
                 <li>
-                    <a href="<?php echo $this->url($this->route); ?>?page=<?php echo $this->next; ?>">
+                    <a href="<?php echo $this->url($this->route); ?>?page=<?php echo $this->next; ?>&role=<?=$this->role?>">
                         <?php echo $this->translate("Next"); ?>
                     </a>
                 </li>
@@ -67,7 +67,7 @@
             <!-- Last page link -->
             <?php if (isset($this->next)): ?>
                 <li>
-                    <a href="<?php echo $this->url($this->route); ?>?page=<?php echo $this->last; ?>"><?php echo $this->translate("Last"); ?></a>
+                    <a href="<?php echo $this->url($this->route); ?>?page=<?php echo $this->last; ?>&role=<?=$this->role?>"><?php echo $this->translate("Last"); ?></a>
                 </li>
             <?php else: ?>
                 <li class="disabled">

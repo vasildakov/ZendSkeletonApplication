@@ -28,7 +28,7 @@ class LoadAffiliateData implements OrderedFixtureInterface, FixtureInterface
 
             $role = $objectManager->find('\Core\Entity\Role', 6);
 
-		    $affiliate = new \Core\Entity\Affiliate();
+		    $affiliate = new \Core\Entity\User();
 		    $affiliate->setUsername($row['username']);
             $affiliate->setPassword(123456);
             $affiliate->setName($row['name']);

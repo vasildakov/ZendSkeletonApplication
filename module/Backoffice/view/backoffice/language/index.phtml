@@ -1,1 +1,59 @@
-Language
+<div class="row">
+	<div class="col-lg-12">
+		<div class="grid simple">
+			<div class="grid-body">
+			<h3>Language <span class="semi-bold">Results</span></h3>
+				<table class="table table-hover table-striped">
+				    <thead>
+				        <tr>
+				            <th>
+					            <div class="checkbox check-default">
+					            	<input id="checkbox0" type="checkbox" class="checkall">
+					            	<label for="checkbox0"></label>
+					            </div>
+				            </th>
+				            <th>ID</th>
+				            <th><?php echo $this->translate('Name');?></th>
+				            <th><?php echo $this->translate('Code');?></th>
+				            <th><?php echo $this->translate('Sites');?></th>
+				            <th><?php echo $this->translate('Validated');?></th>
+				            <th><?php echo $this->translate('Onhold');?></th>
+				            <th><?php echo $this->translate('Created');?></th>
+				            <th><?php echo $this->translate('Status');?></th>
+				            <th><?php echo $this->translate('Actions');?></th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    <?php if(!empty($paginator)): foreach ($paginator as $language) : ?>
+					    <?php $id = $language->getId(); ?>
+					    <?php $checkbox = "checkbox{$id}"; ?>
+				    	<tr>
+				    		<td>
+					    		<div class="checkbox check-default">
+					    			<input value="1" id="<?=$checkbox;?>" type="checkbox">
+					    			<label for="<?=$checkbox;?>"></label>
+					    		</div>
+				    		</td>
+				    		<td><?php echo $language->getId(); ?></td>
+				    		<td><?php echo $language->getName(); ?></td>
+				    		<td><?php echo $language->getCode(); ?></td>
+				    		<td><?php echo rand(100, 800); ?></td>
+				    		<td><b class="text-success"><?= number_format(rand(2235, 10987),2)?> &euro;</b></td>
+				    		<td><b class="text-muted"><?= number_format(rand(2235, 10987),2)?> &euro;</b></td>
+				    		<td><?php echo $language->getCreatedAt(); ?></td>
+				    		<td><?php echo $language->getStatus(); ?></td>
+				    		<td>Edit | View</td>
+				    	</tr>
+				    <?php endforeach; endif; ?>
+				    </tbody>
+				</table>
+
+				<div>
+				<?php echo $this->paginationControl($this->paginator, 'sliding',
+				    array('partial/paginator.phtml', 'Backoffice'), array('route' => 'backoffice/language')); ?>	
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

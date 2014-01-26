@@ -1,65 +1,135 @@
-<h1>Users</h1>
-<div class="row">
-	<?php
-		$form = $this->form;
-		$form->prepare();
-		echo $this->form()->openTag($form);
-	?>
-
-    <div class="form-group">
-        <?php #echo $this->formLabel($form->get('username')); ?>
-        <?php echo $this->formInput($form->get('username')); ?>
-    </div>
-
-    <div class="form-group">
-        <?php #echo $this->formLabel($form->get('name')); ?>
-        <?php echo $this->formInput($form->get('name')); ?>
-    </div>
-
-    <?php echo $this->formRow($form->get('submit')); ?>
-</div>
-
-<?php echo $this->form()->closeTag();?>
 
 <div class="row">
 	<div class="col-lg-12">
-		<table class="table table-hover table-striped">
-		    <thead>
-		        <tr>
-		            <th><input type="checkbox"></th>
-		            <th>ID</th>
-		            <th>Username</th>
-		            <th>Name</th>
-		            <th>Surname</th>
-		            <th>Email</th>
-		            <th>Actions</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		    <?php if(!empty($paginator)): foreach ($paginator as $affiliate) : ?>
-		    	<tr>
-		    		<td><input type="checkbox"></td>
-		    		<td><?php echo $affiliate->getId(); ?></td>
-		    		<td><a href="#"><?php echo $affiliate->getUsername(); ?></a></td>
-		    		<td><?php echo $affiliate->getName(); ?></td>
-		    		<td><?php echo $affiliate->getSurname(); ?></td>
-		    		<td><?php echo $affiliate->getEmail(); ?></td>
-		    		<td>Edit | View</td>
-		    	</tr>
-		    <?php endforeach; endif; ?>
-		    </tbody>
-		</table>
+		<div class="grid simple">
+			<div class="grid-body no-border">
+			<h4>Advanced<span class="semi-bold">Search</span></h4>
+				<?php
+					$form = $this->form;
+					$form->prepare();
+					echo $this->form()->openTag($form);
+
+					#$submit = $form->get('submit');
+					#$submit->setName("action");
+
+				?>
+				<div class="row form-row">
+					<div class="col-md-2"><?php echo $this->formInput($form->get('username')); ?></div>
+					<div class="col-md-2"><?php echo $this->formInput($form->get('name')); ?></div>
+					<div class="col-md-2"><?php echo $this->formSelect($form->get('role')); ?></div>
+					<div class="col-md-1 pull-right"><?php echo $this->formInput($form->get('submit')); ?></div>
+				</div>
+				<?php 
+					echo $this->form()->closeTag();
+				?>
+			</div>
+		</div>
 	</div>
 </div>
 
 
-<div>
-<?php // add at the end of the file after the table
-echo $this->paginationControl(
-    $this->paginator,
-    'sliding',
-    array('partial/paginator.phtml', 'Backoffice'),
-    array('route' => 'backoffice/user')
-); 
-?>	
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="grid simple">
+			<div class="grid-title no-border">
+				<h4>User <span class="semi-bold">Results</span></h4>
+				<div class="tools">
+					<a class="collapse" href="javascript:;"></a>
+					<a class="config" data-toggle="modal" href="#grid-config"></a>
+					<a class="reload" href="javascript:;"></a>
+					<a class="remove" href="javascript:;"></a>
+				</div>
+			</div>
+
+			<div class="grid-body no-border">
+				<h3>User <span class="semi-bold">Results</span></h3>
+
+				<table class="table table-hover table-striped">
+				    <thead>
+				        <tr>
+				            <th>
+					            <div class="checkbox check-default">
+					            	<input id="checkbox0" type="checkbox" class="checkall">
+					            	<label for="checkbox0"></label>
+					            </div>
+				            </th>
+				            <th>ID</th>
+				            <th><?php echo $this->translate('Username');?></th>
+				            <th><?php echo $this->translate('Name');?></th>
+				            <th><?php echo $this->translate('Surname');?></th>
+				            <th><?php echo $this->translate('Role');?></th>
+				            <th><?php echo $this->translate('Validated');?></th>
+				            <th><?php echo $this->translate('Created');?></th>
+				            <th><?php echo $this->translate('Status');?></th>
+				            <th><?php echo $this->translate('Actions');?></th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    <?php if(!empty($paginator)): foreach ($paginator as $affiliate) : ?>
+					    <?php $id = $affiliate->getId(); ?>
+					    <?php $checkbox = "checkbox{$id}"; ?>
+				    	<tr>
+				    		<td>
+					    		<div class="checkbox check-default">
+					    			<input value="1" id="<?=$checkbox;?>" type="checkbox">
+					    			<label for="<?=$checkbox;?>"></label>
+					    		</div>
+				    		</td>
+				    		<td><?php echo $affiliate->getId(); ?></td>
+				    		<td><a href="#"><?php echo $affiliate->getUsername(); ?></a></td>
+				    		<td><?php echo $affiliate->getName(); ?></td>
+				    		<td><?php echo $affiliate->getSurname(); ?></td>
+				    		<td><?php echo $affiliate->getRole()->getName(); ?></td>
+				    		<td><b class="text-success"><?= number_format(rand(2235, 10987),2)?> &euro;</b></td>
+				    		<td><?php echo $affiliate->getCreatedAt(); ?></td>
+				    		<td><?php echo $affiliate->getStatus(); ?></td>
+				    		<td>
+					    		<div class="btn-group pull-right">
+					    			<button class="btn btn-mini btn-white">Action</button>
+					    			<button class="btn btn-mini btn-white dropdown-toggle" data-toggle="dropdown">
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li><a href="#">Edit</a></li>
+										<li><a href="#">View</a></li>
+										<li><a href="#">Delete</a></li>
+									</ul>
+					    		</div>
+				    		</td>
+				    	</tr>
+				    <?php endforeach; endif; ?>
+				    </tbody>
+				</table>
+
+				<div>
+				<?php 
+				// see https://github.com/tahmina8765/zf2_search_with_pagination_example
+				// http://zf2.readthedocs.org/en/latest/tutorials/tutorial.pagination.html
+				echo $this->paginationControl(
+					// the paginator object
+					$this->paginator, 
+					// the scrolling style
+					'sliding',
+					// the partial to use to render the control
+				    array('partial/paginator.phtml', 'Backoffice'), 
+
+				    // the route to link to when a user clicks a control link
+				    // array('route' => 'backoffice/user')
+				    array('role' => $role, 'bar' => 'foo', 'pageAction' => $pageAction)
+				    ); 
+				?>	
+				</div>
+
+			</div>
+		</div>
+	</div>
 </div>
+
+<script>
+$( document ).ready(function() {
+	console.log('here');
+	$(".select2").select2();
+});
+
+</script>

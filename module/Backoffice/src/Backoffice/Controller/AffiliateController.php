@@ -29,6 +29,9 @@ class AffiliateController extends AbstractActionController
     	$request = $this->getRequest();
 
 		$entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+        // see http://doctrine-orm.readthedocs.org/en/2.0.x/reference/query-builder.html
+        // the search query must be moved in the entity repository
 		$qb = $entityManager->createQueryBuilder();
 		$qb->from('Core\Entity\Affiliate', 'a');
 		$qb->select("a");
@@ -37,11 +40,19 @@ class AffiliateController extends AbstractActionController
 
     		$form->setData($request->getPost());
 
+            // search by username
 		    if($this->params()->fromPost('username')) {
-	            $qb->where('a.username = :username');
+	            $qb->andWhere('a.username = :username');
 	            $qb->setParameter('username', $this->params()->fromPost('username'));
 		    } 
 
+            // search by name
+            if($this->params()->fromPost('name')) {
+                $qb->andWhere('a.name = :name');
+                $qb->setParameter('name', $this->params()->fromPost('name'));
+            } 
+
+            // order by 
         	$qb->orderBy('a.id', 'desc');
     	}
 
@@ -50,8 +61,8 @@ class AffiliateController extends AbstractActionController
     	$adapter = new DoctrinePaginatorAdapter(new DoctrinePaginator($query));
         
         $paginator = new ZendPaginator($adapter);
-        $paginator->setDefaultItemCountPerPage(10);
-
+        $paginator->setDefaultItemCountPerPage(15);
+        
         $page = (int)$this->params()->fromQuery('page');
         if($page) $paginator->setCurrentPageNumber($page); 
 

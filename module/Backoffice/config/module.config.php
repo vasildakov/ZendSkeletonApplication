@@ -2,9 +2,6 @@
 namespace Backoffice;
 
 return array(
-    'module_layouts' => array(
-        'Backoffice' => 'layout/layout',
-    ),
     'controllers' => array(
         'invokables' => array(
             'Backoffice\Controller\Affiliate'   => 'Backoffice\Controller\AffiliateController',
@@ -22,6 +19,9 @@ return array(
     'view_manager' => array(
         'template_path_stack' => array(
             'backoffice' => __DIR__ . '/../view',
+        ),
+        'template_map' => array(
+            //'backoffice/layout' => __DIR__ . '/../view/layout/layout.phtml',
         ),
     ),    
 );

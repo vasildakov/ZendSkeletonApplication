@@ -1,6 +1,6 @@
 <?php
 //module/Core/src/Core/Storage/AuthStorage.php
-namespace Authentication\Model;
+namespace Core\Storage;
  
 use Zend\Authentication\Storage;
 

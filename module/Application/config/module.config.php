@@ -2,6 +2,9 @@
 namespace Application;
 
 return array(   
+    'module_layouts' => array(
+        'Application' => 'layout/layout',
+    ),
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -22,6 +25,17 @@ return array(
                         '__NAMESPACE__' => 'Application\Controller',
                         'controller'    => 'Auth',
                         'action'        => 'login',
+                    ),
+                ),
+            ),
+            'logout' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/logout',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Auth',
+                        'action'        => 'logout',
                     ),
                 ),
             ),

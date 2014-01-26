@@ -8,20 +8,40 @@ use Zend\Mvc\Controller\PluginManager;
 use Zend\EventManager\EventInterface;
 
 use Core\View\Helper\AbsoluteUrl;
+use Core\View\Helper\RenderForm;
 
 class Module {
 
 
     public function onBootstrap(EventInterface $e)
     {
+        #var_dump('onBootstrap');
+
         $application = $e->getTarget();
+        #var_dump($application); exit();
+
         $serviceManager = $application->getServiceManager();
-        $sharedManager = $application->getEventManager()->getSharedManager();
-        
-        $eventManager = $e->getApplication()->getEventManager();
-        
+        $sharedManager  = $application->getEventManager()->getSharedManager();
+        #var_dump($sharedManager); exit();
+
+        $eventManager   = $e->getApplication()->getEventManager();
+        #var_dump($eventManager); exit();
+
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+
+        // router, request and matched route
+        $router  = $serviceManager->get('router');
+        $request = $serviceManager->get('request');
+        $matchedRoute = $router->match($request);
+        #var_dump($matchedRoute);
+
+
+        $sharedManager->attach('Zend\Mvc\Controller\AbstractActionController','dispatch',
+            function($e) use ($serviceManager) {
+                $serviceManager->get('ControllerPluginManager')->get('Acl')->testAcl($e); //pass to the plugin...   
+            },2
+        );         
 
     }
 
@@ -31,6 +51,7 @@ class Module {
         $config = array();
         $configFiles = array(
                 __DIR__ . '/config/module.config.php', // Defaults
+                
             );
 
         // Merge all module config options
@@ -48,9 +69,14 @@ class Module {
             'abstract_factories' => array(),
             'aliases' => array(),
             'factories' => array(
-                'Core\Form\SignupForm' => function($serviceManager) {
+                'Core\Form\User\Signup' => function($serviceManager) {
                     $entityManager = $serviceManager->get('Doctrine\ORM\EntityManager');
-                    $form = new \Core\Form\SignupForm($entityManager);
+                    $form = new \Core\Form\User\Signup($entityManager);
+                    return $form;
+                },
+                'Core\Form\User\Search' => function($serviceManager) {
+                    $entityManager = $serviceManager->get('Doctrine\ORM\EntityManager');
+                    $form = new \Core\Form\User\Search($entityManager);
                     return $form;
                 },
                 'Zend\Authentication\AuthenticationService' => function($serviceManager) {
@@ -74,12 +100,28 @@ class Module {
                 // the array key here is the name you will call the view helper by in your view scripts
                 'absoluteUrl' => function($serviceManager) {
                     $locator = $serviceManager->getServiceLocator(); // $sm is the view helper manager, so we need to fetch the main service manager
-                    return new AbsoluteUrl($locator->get('Request'));
+                    
+                    return new \Core\View\Helper\AbsoluteUrl($locator->get('Request'));
                 },
+                'renderForm'  => function($serviceManager) {
+                    $locator = $serviceManager->getServiceLocator();
+                    $form = new \Core\Form\User\Search();
+                    $request = $locator->get('Request');
+                    
+                    return new RenderForm($form, $request);
+                }
             ),
         );
     }
 
+    public function getControllerPluginConfig() 
+    {
+        return array(
+            'invokables' => array(
+                'Acl' => 'Core\Controller\Plugin\Acl'
+            ),
+        );
+    } 
 
     public function getAutoloaderConfig()
     {

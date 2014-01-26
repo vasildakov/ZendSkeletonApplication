@@ -1,11 +1,4 @@
 <?php
-/**
- * A mapped superclass cannot be an entity, it is not query-able and persistent relationships defined by a 
- * mapped superclass must be unidirectional (with an owning side only). This means that One-To-Many 
- * assocations are not possible on a mapped superclass at all. Furthermore Many-To-Many associations are 
- * only possible if the mapped superclass is only used in exactly one entity at the moment. For further support of 
- * inheritance, the single or joined table inheritance features have to be used.
- */
 
 namespace Core\Entity;
 
@@ -13,13 +6,24 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
+ * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Core\Repository\UserRepository") 
  * @ORM\Table(name="user")
- * @ORM\InheritanceType("JOINED")
- * @ORM\DiscriminatorColumn(name="role_id", type="integer")
- * @ORM\DiscriminatorMap({"affiliate" = "Affiliate", "manager" = "Manager"})
  */
 class User
 {
+
+    /**
+     * User status
+     */
+    const STATUS_VALIDATED  = 1;
+    const STATUS_PENDING    = 2;
+
+    public $statusOptions = array(
+                    self::STATUS_PENDING    => "Pending",
+                    self::STATUS_VALIDATED  => "Validated"
+                );
+
 
     /**
      * @var integer
@@ -72,6 +76,15 @@ class User
      */
     private $created_at;
 
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updated_at;
+
+
     /**
      * @var integer
      *
@@ -79,6 +92,24 @@ class User
      */
     private $status;
 
+
+    /**
+     * @var \Core\Entity\Role
+     *
+     * @ORM\ManyToOne(targetEntity="Core\Entity\Role")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+     * })
+     */
+    private $role;
+
+
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTime(); 
+        $this->status = 2; 
+    }
 
 
 
@@ -125,7 +156,7 @@ class User
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        $this->password = md5($password);
         return $this;
     }
 
@@ -233,7 +264,33 @@ class User
      */
     public function getCreatedAt()
     {
-        return $this->created_at;
+        //return $this->created_at;
+        return $this->created_at->format('Y-m-d');
+    }
+
+
+    /**
+     * Set updated_at
+     *
+     * @param \DateTime $updated_at
+     * @return User
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        $this->updated_at = $updated_at;
+        return $this;
+    }
+
+
+    /**
+     * Get updated_at
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        //return $this->created_at;
+        return $this->updated_at->format('Y-m-d');
     }
 
 

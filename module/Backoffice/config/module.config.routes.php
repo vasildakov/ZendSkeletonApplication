@@ -8,15 +8,11 @@ return array(
             'backoffice' => array(
                 'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
-                    'route'    => '/[:lang]/backoffice', // route to /backoffice, [/] adds a trailing slash to the url
+                    'route'    => '/backoffice', // route to /backoffice, [/] adds a trailing slash to the url
                     'defaults' => array(
                         //'__NAMESPACE__' => 'Backoffice\Controller',
                         'controller' => 'Backoffice\Controller\Dashboard',
                         'action'     => 'index',
-                        'lang' => 'en',
-                    ),
-                    'constraints' => array(
-                        'lang' => '(en|de|fr|nl|bg)?',
                     ),
                 ),
                 'may_terminate' => true,

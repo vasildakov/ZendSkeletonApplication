@@ -11,11 +11,12 @@
 
         <!-- Assetic Styles and Scripts -->
         <?php
-            echo $this->plugin('HeadLink');
-            echo $this->plugin('HeadStyle');
-            echo $this->plugin('HeadScript');
-        ?>
+            #echo $this->headScript()->appendFile($this->basePath() . '/Application/js/jquery.min.js', 'text/javascript');
+            echo $this->headScript()->appendFile($this->basePath() . '/js/application.js', 'text/javascript');
 
+            echo $this->headLink()->appendStylesheet($this->basePath() . '/css/bootstrap.css');
+            echo $this->headLink()->appendStylesheet($this->basePath() . '/css/style.css');
+        ?>
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">

@@ -8,6 +8,7 @@
  */
 
 namespace Backoffice\Controller;
+
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
@@ -30,31 +31,44 @@ class UserController extends AbstractActionController
     public function indexAction()
     {
  
+        $entityManager = $this->getEntityManager();
+
         $request = $this->getRequest();
-        $post = $request->getPost();
+        $post    = $request->getPost();
+        $get     = $request->getQuery();
 
-        $query = $this->getEntityManager()->getRepository('Core\Entity\Affiliate')->getSearchQuery($post);
+        $query = $this->getEntityManager()->getRepository('Core\Entity\User')->getSearchQuery($get);
 
-        //$paginator = new DoctrinePaginator($query, false);
-        //var_dump($paginator);
 
-    	$form = new \Core\Form\UserSearchForm();
-        $form->setData($request->getPost());
 
-		
+        // get the search form via factory
+        // $form = $this->getServiceLocator()->get('Core\Form\User\Search');
 
+    	$form = new \Core\Form\User\Search($entityManager);
+        #$form->setData($request->getPost());
+        $form->setData($request->getQuery()); // set form data from query
 
     	$adapter = new DoctrinePaginatorAdapter(new DoctrinePaginator($query));
         $paginator = new ZendPaginator($adapter);
-        $paginator->setDefaultItemCountPerPage(8);
+        $paginator->setDefaultItemCountPerPage(12);
+
+        
 
         $page = (int)$this->params()->fromQuery('page');
+        $role = (int)$this->params()->fromQuery('role');
+
         if($page) $paginator->setCurrentPageNumber($page); 
+
+        // set variable to layout
+        $this->layout()->setVariable('title', 'Users');
 
 
 	    return new ViewModel(array(
-	    	'form' => $form,
-	    	'paginator' => $paginator,
+	    	'form'        => $form,
+	    	'paginator'   => $paginator,
+            'pageAction'  => 'backoffice/user',
+            'page'        => $page,
+            'role'        => $role,
 	    ));
     }
 

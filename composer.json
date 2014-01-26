@@ -19,6 +19,7 @@
         "hounddog/doctrine-data-fixture-module": "0.0.*",
         "symfony/yaml": "*",
         "bjyoungblood/bjy-profiler": "dev-master",
-        "widmogrod/zf2-assetic-module": "1.*"
+        "rwoverdijk/assetmanager": "1.*",
+        "evandotpro/edp-module-layouts": "1.*"
     }
 }
