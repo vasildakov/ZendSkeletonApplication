@@ -1,0 +1,121 @@
+<style>
+	.combodate select { display: inline-block; border: 1px solid #ccc; float: left; margin-right: 5px; }
+
+
+</style>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="grid simple">
+			<div class="grid-body no-border">
+				<h3>Create <span class="semi-bold">Campaign</span></h3>
+				<br>
+				<div class="clearfix"></div>
+
+					<?php
+					$form = $this->form;
+					$form->prepare();
+					echo $this->form()->openTag($form);
+					?>
+
+			        <div class="form-group">
+			            <?php echo $this->formLabel($form->get('name')); ?>
+			            <div class="col-lg-10"><?php echo $this->formInput($form->get('name')); ?></div>
+			            <span class="help col-lg-10 col-md-offset-2">e.g. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+			        </div>
+
+			        <div class="form-group">
+			            <?php echo $this->formLabel($form->get('started_at')); ?>
+			            <div class="col-lg-10">
+			            <?php 
+			            $started_at = $form->get('started_at');
+			            #$started_at->setValue("2014-02-14");
+			            #$started_at->setAttribute('value', '2013-01-01');
+			            echo $this->formInput($started_at); ?>
+			            </div>
+			            <span class="help col-lg-10 col-md-offset-2">e.g. Excepteur sint occaecat cupidatat non proident.</span>
+			        </div>
+
+			        <div class="form-group">
+			            <?php echo $this->formLabel($form->get('ended_at')); ?>
+			            <div class="col-lg-10"><?php echo $this->formInput($form->get('ended_at')); ?></div>
+			            <span class="help col-lg-10 col-md-offset-2">e.g. Duis aute irure dolor in reprehenderit in voluptate velit.</span>
+			        </div>
+
+			        <div class="form-group">
+						<div class="checkbox check-default col-lg-10 col-md-offset-2">
+							<input value="1" id="checkbox1" type="checkbox">
+							<label for="checkbox1">Keep Me Signed in</label>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<div class="radio col-lg-10 col-md-offset-2">
+						    <input value="yes" name="optionyes" id="yes" type="radio">
+						    <label for="yes">Agree</label>
+						    <input checked="checked" value="no" name="optionyes" id="no" type="radio">
+						    <label for="no">Disagree</label>
+						</div>
+					</div>
+
+			        <div class="form-group">
+			            <div class="col-lg-10 col-md-offset-2"><?php echo $this->formRow($form->get('submit')); ?></div>
+			        </div>
+
+					<?php echo $this->form()->closeTag();?>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-lg-12">
+		<?php if(!empty($this->campaign)) var_dump($this->campaign); ?>
+	</div>
+</div>
+
+
+<script>
+$(document).ready(function() {
+
+
+
+	// http://vitalets.github.io/combodate/#docs
+    $(function(){
+    	// $('.datetime').combodate();
+
+    	$('#started_at').combodate({
+			minYear: 2010,
+			maxYear: 2015,
+			minuteStep: 10,
+			smartDays: true,
+			customClass: "form-control"
+		});
+
+    	$('#ended_at').combodate({
+			minYear: 2010,
+			maxYear: 2020,
+			minuteStep: 10,
+			smartDays: true,
+			customClass: "form-control"
+		});
+
+    });
+
+	$("form").submit(function( event ) {
+		//alert( $("#started_at").val() );
+		//event.preventDefault();
+	});
+
+
+	/* $(function(){
+		$(".select2").select2({
+			minimumResultsForSearch: -1,
+			dropdownAutoWidth : true
+		});
+	}); */
+
+});
+</script>

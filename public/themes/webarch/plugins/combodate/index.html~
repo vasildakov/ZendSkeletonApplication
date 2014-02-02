@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Your Website</title>
+
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+	<script src="combodate.js"></script>
+	<script src="moment.min.js"></script>
+
+	<style></style>
+
+</head>
+
+<body>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<form class="form-inline" role="form">
+				<div class="form-group">
+					<br>
+		  		<input id="date" data-format="DD-MM-YYYY HH:mm" data-template="DD MMM YYYY HH:mm" name="date" value="01-02-2014 20:30" type="text">
+					<button type="submit" class="btn btn-default">Submit</button>
+				</div>
+				<div class="form-group">
+		  		<span> </span>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function() {
+		// http://vitalets.github.io/combodate/#docs
+    $(function(){
+    	$('#date').combodate({
+					firstItem: 'name',
+					minYear: 2006,
+					maxYear: 2015,
+					minuteStep: 10,
+					smartDays: true,
+					customClass: "form-control"
+			});
+    });
+
+	$("form").submit(function( event ) {
+		alert( $("#date").val() );
+		event.preventDefault();
+	});
+
+});
+</script>
+
+</body>
+</html>

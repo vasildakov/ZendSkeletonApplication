@@ -50,6 +50,17 @@ return array(
                             ),
                         ),
                     ),
+                    'campaign' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route'    => '/campaign[/:action][/:id]', // route to /backoffice/user...
+                            'defaults' => array(
+                                //'__NAMESPACE__' => 'Backoffice\Controller',
+                                'controller' => 'Backoffice\Controller\Campaign',
+                                'action'     => 'index',
+                            ),
+                        ),
+                    ),
                     'country' => array(
                         'type' => 'Segment',
                         'options' => array(

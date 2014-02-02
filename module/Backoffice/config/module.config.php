@@ -5,6 +5,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Backoffice\Controller\Affiliate'   => 'Backoffice\Controller\AffiliateController',
+            'Backoffice\Controller\Campaign'    => 'Backoffice\Controller\CampaignController',
             'Backoffice\Controller\Country'     => 'Backoffice\Controller\CountryController',
             'Backoffice\Controller\Currency'    => 'Backoffice\Controller\CurrencyController',
             'Backoffice\Controller\Dashboard'   => 'Backoffice\Controller\DashboardController',
