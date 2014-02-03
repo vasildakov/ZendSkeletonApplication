@@ -21,12 +21,15 @@ class CampaignController extends AbstractActionController
 
     public function createAction()
     {
-        $form = new \Core\Form\Campaign\TestForm();
+        #$form = new \Core\Form\Campaign\TestForm();
+        $form = $this->getServiceLocator()->get('FormElementManager')->get('TestForm');
+
         $request = $this->getRequest();
 
         if($request->isPost()) {
 
             $form->setData($request->getPost());
+
             if ($form->isValid()) {
 
                 $campaign = new \Core\Entity\Campaign;
@@ -43,6 +46,9 @@ class CampaignController extends AbstractActionController
                     )
                 );  
                 */
+            }else {
+                $messages = $form->getMessages();
+                #var_dump($messages);
             }
 
         }
@@ -50,7 +56,7 @@ class CampaignController extends AbstractActionController
 
         return new ViewModel(array(
             "form" => $form,
-            "campaign" => $campaign
+            #"campaign" => $campaign
         ));
     }    
 

@@ -3,6 +3,17 @@ namespace Core;
 
 /* doctrine config must be here */
 return array(
+
+    'validators' => array(
+        'invokables' => array(
+            'TestValidator' => 'Core\Validator\TestValidator' 
+         ),
+    ),
+    'form_elements' => array(
+        'factories' => array(
+            'TestForm' => 'Core\Form\Campaign\TestFormFactory'
+        ),                        
+    ),
     'data-fixture' => array(
         'location' => __DIR__ . '/../src/Core/Fixture',
     ),

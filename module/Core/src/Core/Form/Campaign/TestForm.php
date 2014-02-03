@@ -8,17 +8,24 @@
 namespace Core\Form\Campaign;
 
 use Zend\Form\Form;
+use Zend\Validator\ValidatorChain;
+use Zend\Validator\ValidatorPluginManager;
 
 class TestForm extends Form {
 
-    public function __construct($name = null)
+    protected $validatorManager;
+
+    public function __construct(ValidatorPluginManager $validatorManager)
     {
         // we want to ignore the name passed
-        parent::__construct('form');
+        parent::__construct();
+        
+        $this->validatorManager = $validatorManager;
 
         $today = new \DateTime();
         $tomorrow = clone $today;
         $tomorrow->modify('+1 day');
+
 
         $this->setAttributes( array(
             'role' => 'form', 
@@ -27,6 +34,7 @@ class TestForm extends Form {
             'style' => 'width:100%',
             ) 
         );
+
 
         // name
         $this->add(array(
@@ -103,10 +111,32 @@ class TestForm extends Form {
             ),
         ));  
 
-        
-        #$name = $this->getInputFilter()->get('name');
-        #$myFilter = new \Core\Form\Filter\MyFilter();
-        #$name->getValidatorChain()->attach($myFilter);
+
+        $this->setInputFilter($this->createInputValidation());
 
     }
+
+    public function createInputValidation()
+    {
+        $inputFilter = $this->getInputFilter();
+         
+        $validatorChain = new ValidatorChain();
+        $validatorChain->setPluginManager($this->validatorManager);
+ 
+        $inputFilter->getFactory()->setDefaultValidatorChain($validatorChain);
+         
+        $inputFilter->add(array(
+            'name'     => 'name',
+            'required' => true,
+            'validators' => array(
+                array(
+                    'name' => 'TestValidator'
+                )
+            ),
+        ));
+         
+        return $inputFilter;
+    }
+
+
 }
