@@ -38,14 +38,8 @@ class CampaignController extends AbstractActionController
                 $campaign->setEndedAt($request->getPost('ended_at'));
                 // var_dump($campaign);
 
-                /* 
-                var_dump( array(
-                    $request->getPost('name'),
-                    $request->getPost('started_at'),
-                    $request->getPost('ended_at'),
-                    )
-                );  
-                */
+                var_dump( array($request->getPost()));  
+                
             }else {
                 $messages = $form->getMessages();
                 #var_dump($messages);

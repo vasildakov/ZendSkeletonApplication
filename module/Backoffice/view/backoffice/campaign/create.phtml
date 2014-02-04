@@ -1,112 +1,139 @@
 <style>
-	.combodate select { display: inline-block; border: 1px solid #ccc; float: left; margin-right: 5px; }
+	.combodate .select2 { display: inline-block; float: left; margin-right: 15px; }
 
 
 </style>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="grid simple">
+			<div class="grid-title no-border">
+				<h4>Create new <span class="semi-bold">Campaign</span></h4>
+			</div>
+
 			<div class="grid-body no-border">
-				<h3>Campaign <span class="semi-bold">Details</span></h3>
-				<br>
-				<div class="clearfix"></div>
+				<div class="row">
+					<div class="col-md-6">
+						<h3>Campaign <span class="semi-bold">Details</span></h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+						<br>
+						<div class="clearfix"></div>
 
-					<?php
-					$form = $this->form;
-					$form->prepare();
-					echo $this->form()->openTag($form);
-					?>
+							<?php
+							$form = $this->form;
+							$form->prepare();
+							echo $this->form()->openTag($form);
+							?>
 
-			        <div class="form-group">
-			            <?php echo $this->formLabel($form->get('name')); ?>
-			            <div class="col-lg-10"><?php echo $this->formInput($form->get('name')); ?></div>
-			            <span class="help col-lg-10 col-md-offset-2">e.g. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
-			            <?php echo $this->formElementErrors()
-			            			->setMessageOpenFormat('<div class="col-lg-10 col-md-offset-2 help-inline text-danger">')
-			            			->setMessageSeparatorString('</div><div class="help-inline">')
-			            			->setMessageCloseString('</div>')->render($form->get('name'));
-			            			// http://stackoverflow.com/questions/13765662/add-class-attribute-to-form-errors
-			            			?>
-			        </div>
+					        <div class="form-group">
+					            <?php echo $this->formLabel($form->get('name')); ?>
+					            <span class="help">e.g. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+					            <div class="controls"><?php echo $this->formInput($form->get('name')); ?></div>
+					            <?php echo $this->formElementErrors()
+					            			->setMessageOpenFormat('<div class="help-inline text-danger">')
+					            			->setMessageSeparatorString('</div><div class="help-inline">')
+					            			->setMessageCloseString('</div>')->render($form->get('name'));
+					            			// http://stackoverflow.com/questions/13765662/add-class-attribute-to-form-errors
+					            			?>
+					        </div>
 
-			        <div class="form-group">
-			        	<label class="control-label col-sm-2" for="name">Operator</label>
-			        	<div class="col-lg-10">
-			        		<select name="" class="select2" style="width:100%">
-			        			<option value="">Operator</option>
-			        		</select>
-			        	</div>
-			        </div>
+					        <div class="form-group">
+					            <?php echo $this->formLabel($form->get('started_at')); ?>
+					            <span class="help">e.g. Excepteur sint occaecat cupidatat non proident.</span>
+					            <div class="clearfix"></div>
+					            <?php echo $this->formInput($form->get('started_at')); ?>
+					            
+					        </div>
 
-			        <div class="form-group">
-			        	<label class="control-label col-sm-2" for="name">Category</label>
-			        	<div class="col-lg-10">
-			        		<select name="" class="select2" style="width:100%">
-			        			<option value="">Category</option>
-			        		</select>
-			        	</div>
-			        </div>
-
-			        <div class="form-group">
-			        	<label class="control-label col-sm-2" for="name">Language(s)</label>
-			        	<div class="col-lg-10">
-			        		<select name="" class="select2" style="width:100%">
-			        			<option value="">Language</option>
-			        			<option value="">English</option>
-			        			<option value="">French</option>
-			        		</select>
-			        	</div>
-			        </div>
+					        <div class="form-group">
+					            <?php echo $this->formLabel($form->get('ended_at')); ?>
+					            <span class="help">e.g. Duis aute irure dolor in reprehenderit in voluptate velit.</span>
+					            <div class="clearfix"></div>
+					            <?php echo $this->formInput($form->get('ended_at')); ?>
+					        </div>
 
 
-			        <div class="form-group">
-			            <?php echo $this->formLabel($form->get('started_at')); ?>
-			            <div class="col-lg-10">
-			            <?php 
-			            $started_at = $form->get('started_at');
-			            #$started_at->setValue("2014-02-14");
-			            #$started_at->setAttribute('value', '2013-01-01');
-			            echo $this->formInput($started_at); ?>
-			            </div>
-			            <span class="help col-lg-10 col-md-offset-2">e.g. Excepteur sint occaecat cupidatat non proident.</span>
-			        </div>
+					        <div class="form-group">
+					        	<?php echo $this->formLabel($form->get('bar')); ?>
+					        	<span class="help">e.g. Lorem ipsum dolor sit amet, consectetur.</span>
+					        	<div class="controls"><?php echo $this->formInput($form->get('bar')); ?></div>
+					        	<?php echo $this->formElementErrors($form->get('bar')); ?>
+					        </div>
 
-			        <div class="form-group">
-			            <?php echo $this->formLabel($form->get('ended_at')); ?>
-			            <div class="col-lg-10"><?php echo $this->formInput($form->get('ended_at')); ?></div>
-			            <span class="help col-lg-10 col-md-offset-2">e.g. Duis aute irure dolor in reprehenderit in voluptate velit.</span>
-			        </div>
 
-			        <div class="form-group">
-						<div class="checkbox check-default col-lg-10 col-md-offset-2">
-							<input value="1" id="checkbox1" type="checkbox">
-							<label for="checkbox1">Keep Me Signed in</label>
-						</div>
+					        <div class="form-group">
+					        	<?php echo $this->formLabel($form->get('foo')); ?>
+					        	<span class="help">e.g. Lorem ipsum dolor sit amet, consectetur.</span>
+					        	<div class="controls"><?php echo $this->formInput($form->get('foo')); ?></div>
+					        	<?php echo $this->formElementErrors($form->get('foo')); ?>
+					        </div>
+
+
+					        <div class="form-group">
+					        	<label class="form-label" for="name">Operator</label>
+					        	<span class="help">e.g. Lorem ipsum dolor sit amet, consectetur.</span>
+					        	<div class="controls">
+						        	<select name="" class="select2" style="width:100%">
+						        		<option value="">Operator</option>
+						        	</select>
+					        	</div>
+					        </div>
+
+					        <div class="form-group">
+					        	<label class="form-label" for="name">Category</label>
+					        	<div class="controls">
+						        	<select name="" class="select2" style="width:100%">
+						        		<option value="">Category</option>
+						        	</select>
+						        </div>
+					        </div>
+
+					        <div class="form-group">
+					        	<label class="form-label" for="name">Language(s)</label>
+					        	<select name="" class="select2" style="width:100%">
+					        		<option value="">Language</option>
+					        		<option value="">English</option>
+					        		<option value="">French</option>
+					        	</select>
+					        </div>
+
+
+					        <div class="form-group">
+					        	<label class="control-label" for="name">Description</label>
+					        	<textarea class="form-control" rows="4"></textarea>
+					        </div>
+
+
+					        <div class="form-group">
+					            <div class=""><?php echo $this->formRow($form->get('submit')); ?></div>
+					        </div>
+
+							<?php echo $this->form()->closeTag();?>
 					</div>
 
-
-					<div class="form-group">
-						<div class="radio col-lg-10 col-md-offset-2">
-						    <input value="yes" name="optionyes" id="yes" type="radio">
-						    <label for="yes">Agree</label>
-						    <input checked="checked" value="no" name="optionyes" id="no" type="radio">
-						    <label for="no">Disagree</label>
+					<!-- begin right col -->
+					<div class="col-md-6">
+						<h3>Campaign <span class="semi-bold">Options</span></h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+						<br>
+						<div class="row-fluid">
+					        <div class="form-group">
+								<div class="checkbox check-default">
+									<input value="1" id="checkbox1" type="checkbox" checked="checked">
+									<label for="checkbox1">Controll URL</label>
+								</div>
+								<div class="checkbox check-default">
+									<input value="1" id="checkbox2" type="checkbox">
+									<label for="checkbox2">Another Campaign option</label>
+								</div>
+							</div>
 						</div>
+
+						<hr>
+
 					</div>
+					<!-- eof righ col -->
 
-			        <div class="form-group">
-			        	<label class="control-label col-sm-2" for="name">Description</label>
-			        	<div class="col-lg-10">
-			        		<textarea class="form-control" rows="3"></textarea>
-			        	</div>
-			        </div>
-
-			        <div class="form-group">
-			            <div class="col-lg-10 col-md-offset-2"><?php echo $this->formRow($form->get('submit')); ?></div>
-			        </div>
-
-					<?php echo $this->form()->closeTag();?>
-
+				</div>
 			</div>
 		</div>
 	</div>

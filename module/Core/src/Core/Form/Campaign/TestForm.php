@@ -11,6 +11,8 @@ use Zend\Form\Form;
 use Zend\Validator\ValidatorChain;
 use Zend\Validator\ValidatorPluginManager;
 
+use Zend\InputFilter\Factory as InputFactory;
+
 class TestForm extends Form {
 
     protected $validatorManager;
@@ -30,7 +32,7 @@ class TestForm extends Form {
         $this->setAttributes( array(
             'role' => 'form', 
             'method' => 'post', 
-            'class' => 'form-horizontal',
+            'class' => '',
             'style' => 'width:100%',
             ) 
         );
@@ -41,7 +43,7 @@ class TestForm extends Form {
             'name' => 'name',
             'attributes' => array(
                 'type'  => 'text',
-                'placeholder' => 'Name',
+                'placeholder' => '',
                 'class' => 'form-control',
                 'required' => 'required',
             ),
@@ -49,10 +51,47 @@ class TestForm extends Form {
                 'label' => 'Name',
                 'label_attributes' => array(
                     'for' => 'Name',
-                    'class'  => 'control-label col-sm-2'
+                    'class'  => 'form-label'
                 ),
             ),
         ));
+
+        // Bar
+        $this->add(array(
+            'name' => 'bar',
+            'attributes' => array(
+                'type'  => 'text',
+                'placeholder' => '',
+                'class' => 'form-control',
+                'required' => 'required',
+            ),
+            'options' => array(
+                'label' => 'Bar',
+                'label_attributes' => array(
+                    'for' => 'Name',
+                    'class'  => 'form-label'
+                ),
+            ),
+        ));
+
+        // Foo depends on Bar
+        $this->add(array(
+            'name' => 'foo',
+            'attributes' => array(
+                'type'  => 'text',
+                'placeholder' => '',
+                'class' => 'form-control',
+                'required' => 'required',
+            ),
+            'options' => array(
+                'label' => 'Foo',
+                'label_attributes' => array(
+                    'for' => 'Name',
+                    'class'  => 'form-label'
+                ),
+            ),
+        ));
+
 
         // started at
         $this->add(array(
@@ -72,7 +111,7 @@ class TestForm extends Form {
                 'label' => 'Started',
                 'label_attributes' => array(
                     'for' => 'Started',
-                    'class'  => 'control-label col-sm-2'
+                    'class'  => 'form-label'
                 ),
             ),
         ));
@@ -95,7 +134,7 @@ class TestForm extends Form {
                 'label' => 'Ended',
                 'label_attributes' => array(
                     'for' => 'Ended',
-                    'class'  => 'control-label col-sm-2'
+                    'class'  => 'form-label'
                 ),
             ),
         ));
@@ -111,10 +150,54 @@ class TestForm extends Form {
             ),
         ));  
 
+        // foo depends on bar
+        $factory = new InputFactory();
+
+        $inputFilter = $this->getInputFilter();
+        $inputFilter->add($factory->createInput(array(
+            'name' => 'foo',
+            'validators' => array(
+                    array(
+                        'name' => 'Callback',
+                        'options' => array(
+                            'messages' => array(
+                                \Zend\Validator\Callback::INVALID_VALUE => 'Bar and Foo can not be equal!',
+                            ),
+                            'callback' => function($value, $context = array()) {
+                                return ($context['bar'] == $value) ? false : true;
+                            },
+                        ),
+                    ),
+                )
+            )
+        ));
+
+
+        // add validation to campaign name
+        $inputFilter->add($factory->createInput(array(
+            'name' => 'name',
+            'required' => true,
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim')
+            ),
+            'validators' => array(
+                array(
+                    'name' => 'StringLength',
+                    'options' => array(
+                        'encoding' => 'UTF-8',
+                        'min' => 5,
+                        'max' => 32
+                    )
+                )
+            )
+        )));
+
 
         $this->setInputFilter($this->createInputValidation());
 
     }
+
 
     public function createInputValidation()
     {
