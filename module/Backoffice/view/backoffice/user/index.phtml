@@ -66,8 +66,8 @@
 				        </tr>
 				    </thead>
 				    <tbody>
-				    <?php if(!empty($paginator)): foreach ($paginator as $affiliate) : ?>
-					    <?php $id = $affiliate->getId(); ?>
+				    <?php if(!empty($paginator)): foreach ($paginator as $user) : ?>
+					    <?php $id = $user->getId(); ?>
 					    <?php $checkbox = "checkbox{$id}"; ?>
 				    	<tr>
 				    		<td>
@@ -76,14 +76,14 @@
 					    			<label for="<?=$checkbox;?>"></label>
 					    		</div>
 				    		</td>
-				    		<td><?php echo $affiliate->getId(); ?></td>
-				    		<td><a href="#"><?php echo $affiliate->getUsername(); ?></a></td>
-				    		<td><?php echo $affiliate->getName(); ?></td>
-				    		<td><?php echo $affiliate->getSurname(); ?></td>
-				    		<td><?php echo $affiliate->getRole()->getName(); ?></td>
+				    		<td><?php echo $user->getId(); ?></td>
+				    		<td><a href="#"><?php echo $user->getUsername(); ?></a></td>
+				    		<td><?php echo $user->getName(); ?></td>
+				    		<td><?php echo $user->getSurname(); ?></td>
+				    		<td><?php echo $user->getRole()->getName(); ?></td>
 				    		<td><b class="text-success"><?= number_format(rand(2235, 10987),2)?> &euro;</b></td>
-				    		<td><?php echo $affiliate->getCreatedAt(); ?></td>
-				    		<td><?php echo $affiliate->getStatus(); ?></td>
+				    		<td><?php echo $user->getCreatedAt(); ?></td>
+				    		<td><?php echo $user->getStatus(); ?></td>
 				    		<td>
 					    		<div class="btn-group pull-right">
 					    			<button class="btn btn-mini btn-white">Action</button>
@@ -91,7 +91,8 @@
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
-										<li><a href="#">Edit</a></li>
+										<li><a href="<?php echo $this->url('backoffice/user', 
+										array('action'=>'edit', 'id' => $user->getId()));?>">Edit</a></li>
 										<li><a href="#">View</a></li>
 										<li><a href="#">Delete</a></li>
 									</ul>

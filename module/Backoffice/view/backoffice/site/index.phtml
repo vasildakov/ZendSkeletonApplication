@@ -58,6 +58,7 @@
 					            <th>Validated</th>
 					            <th>Onhold</th>
 					            <th>Created</th>
+					            <th>Status</th>
 					            <th>Actions</th>
 					        </tr>
 					    </thead>
@@ -77,6 +78,7 @@
 					    		<td><b class="text-success"><?= number_format(rand(2235, 10987),2)?> &euro;</b></td>
 					    		<td><b class="muted"><?= number_format(rand(678, 1234),2)?> &euro;</b></td>
 					    		<td><?php echo $site->getCreatedAt(); ?></td>
+					    		<td><?php echo $site->getStatusName(); ?></td>
 					    		<td>
 					    			<div class="btn-group pull-right">
 					    				<button class="btn btn-mini btn-white">Action</button>
@@ -84,7 +86,8 @@
 											<span class="caret"></span>
 										</button>
 										<ul class="dropdown-menu">
-											<li><a href="#">Edit</a></li>
+											<li><a href="<?php echo $this->url('backoffice/site', 
+										array('action'=>'edit', 'id' => $site->getId()));?>">Edit</a></li>
 											<li><a href="#">View</a></li>
 											<li><a href="#">Delete</a></li>
 										</ul>

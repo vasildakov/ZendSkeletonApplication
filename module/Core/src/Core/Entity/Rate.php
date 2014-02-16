@@ -5,12 +5,12 @@ namespace Core\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PricingModel
- * @ORM\Entity(repositoryClass="Core\Repository\PricingModelRepository") 
- * @ORM\Table(name="pricing_model")
+ * Rate
+ * @ORM\Entity(repositoryClass="Core\Repository\RateRepository") 
+ * @ORM\Table(name="rate")
  * @ORM\Entity
  */
-class PricingModel
+class Rate
 {
 
     /**
@@ -39,10 +39,31 @@ class PricingModel
     private $status;
 
     
+    /**
+     * @var \Core\Entity\Campaign
+     *
+     * @ORM\OneToOne(targetEntity="Core\Entity\Campaign")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="campaign_id", referencedColumnName="id")
+     * })
+     */
+    private $campaign;
+
+
+    /**
+     * @var \Core\Entity\Currency
+     *
+     * @ORM\OneToOne(targetEntity="Core\Entity\Currency")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
+     * })
+     */
+    private $currency;
+
+
     public function __construct() 
     {
         
     }
 
-    
 }

@@ -1,0 +1,82 @@
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="grid simple">
+			<div class="grid-title no-border">
+				<h4>Edit <span class="semi-bold">User</span></h4>
+			</div>
+
+			<div class="grid-body no-border">
+				<div class="row">
+					<h3>Edit <span class="semi-bold">User</span></h3>
+
+					<div class="col-md-6">
+					<?php 
+					$form = $this->form;
+					$form->setAttribute('action', $this->url(
+					    'backoffice/user',
+					    array(
+					        'action' => 'edit',
+					        'id'     => $this->id,
+					    )
+					));
+					$form->prepare();
+					echo $this->form()->openTag($form);
+					?>
+
+					<?php echo $this->formHidden($form->get('id')); ?>
+
+			        <div class="form-group">
+			            <?php echo $this->formLabel($form->get('name')); ?>
+			            <div class="controls"><?php echo $this->formInput($form->get('name')); ?></div>
+			        </div>
+
+			        <div class="form-group">
+			            <?php echo $this->formLabel($form->get('surname')); ?>
+			            <div class="controls"><?php echo $this->formInput($form->get('surname')); ?></div>
+			        </div>
+
+			        <div class="form-group">
+			            <?php echo $this->formLabel($form->get('username')); ?>
+			            <div class="controls"><?php echo $this->formInput($form->get('username')); ?></div>
+			        </div>
+
+			        <div class="form-group">
+			            <?php echo $this->formLabel($form->get('email')); ?>
+			            <div class="controls"><?php echo $this->formInput($form->get('email')); ?></div>
+			        </div>
+
+			        <?php /* <div class="form-group">
+			            <?php echo $this->formLabel($form->get('password')); ?>
+			            <div class="controls"><?php echo $this->formInput($form->get('password')); ?></div>
+			        </div> */ ?>
+
+					<div class="form-group">
+						<?php echo $this->formLabel($form->get('role')); ?>
+						<div class="controls"><?php echo $this->formSelect($form->get('role')); ?></div>
+					</div>
+
+			        <div class="form-group">
+			            <div class="col-md-6 col-md-offset-2"><?php echo $this->formRow($form->get('submit')); ?></div>
+			        </div>
+					<?php echo $this->form()->closeTag($form); ?>
+
+					</div>
+				</div>
+		    </div>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function() {
+	$(function(){
+		$(".select2").select2({
+			width: 'resolve',
+			minimumResultsForSearch: -1,
+			dropdownAutoWidth : true
+		});
+	});
+
+});
+</script>

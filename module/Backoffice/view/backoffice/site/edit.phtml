@@ -1,0 +1,62 @@
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="grid simple">
+			<div class="grid-title no-border">
+				<h4>Edit <span class="semi-bold">Site</span></h4>
+			</div>
+
+			<div class="grid-body no-border">
+				<div class="row">
+					<h3>Edit <span class="semi-bold">Site</span></h3>
+
+					<div class="col-md-6">
+					<?php 
+					$form = $this->form;
+					$form->setAttribute('action', $this->url(
+					    'backoffice/site',
+					    array(
+					        'action' => 'edit',
+					        'id'     => $this->id,
+					    )
+					));
+					$form->prepare();
+					echo $this->form()->openTag($form);
+					?>
+
+					<?php echo $this->formHidden($form->get('id')); ?>
+
+			        <div class="form-group">
+			            <?php echo $this->formLabel($form->get('url')); ?>
+			            <div class="controls"><?php echo $this->formInput($form->get('url')); ?></div>
+			        </div>
+
+					<div class="form-group">
+						<?php echo $this->formLabel($form->get('status')); ?>
+						<div class="controls"><?php echo $this->formSelect($form->get('status')); ?></div>
+					</div>
+
+			        <div class="form-group">
+			            <div class="col-md-6 col-md-offset-2"><?php echo $this->formRow($form->get('submit')); ?></div>
+			        </div>
+					<?php echo $this->form()->closeTag($form); ?>
+
+					</div>
+				</div>
+		    </div>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function() {
+	$(function(){
+		$(".select2").select2({
+			width: 'resolve',
+			minimumResultsForSearch: -1,
+			dropdownAutoWidth : true
+		});
+	});
+
+});
+</script>

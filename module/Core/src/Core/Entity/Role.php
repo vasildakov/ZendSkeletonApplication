@@ -29,7 +29,12 @@ class Role
     private $name;
 
 
+    public function __construct() 
+    {
+        
+    }
 
+    
     /**
      * Get id
      *

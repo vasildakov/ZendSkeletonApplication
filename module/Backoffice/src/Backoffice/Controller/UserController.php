@@ -19,12 +19,31 @@ use Zend\Paginator\Paginator as ZendPaginator;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
+use Core\Entity\User;
+use Core\Form\UserForm;
+
 class UserController extends AbstractActionController
 {
 
+    /**
+     * @var Doctrine\ORM\EntityManager
+     */
+    protected $em;
+
+    public function setEntityManager(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
+
     public function getEntityManager() 
     {
-        return $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        if (null === $this->em) {
+            $this->em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        }
+        return $this->em;
+
+        // return $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
     }
 
 
@@ -71,6 +90,43 @@ class UserController extends AbstractActionController
             'role'        => $role,
 	    ));
     }
+
+
+    // http://www.jasongrimes.org/2012/01/using-doctrine-2-in-zend-framework-2/
+    public function editAction()
+    {
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        $user = $this->getEntityManager()->find('Core\Entity\User', $id);
+
+        $form = new UserForm($this->getEntityManager());
+        #$form->setBindOnValidate(false);
+        $form->bind($user);
+        $form->get('submit')->setAttribute('value', 'Edit');
+
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            
+            $form->setInputFilter($user->getInputFilter());
+            $form->setData($request->getPost());
+
+            if ($form->isValid()) {
+                $form->bindValues();
+                $this->getEntityManager()->flush();
+
+                #return $this->redirect()->toUrl('/backoffice/user/edit/'.$id);
+                return $this->redirect()->toRoute('backoffice/user');
+            }else {
+                exit("here");
+            }
+        }
+
+        return new ViewModel(array(
+            'id' => $id,
+            'form' => $form,
+        ));
+    }
+
 
 
 

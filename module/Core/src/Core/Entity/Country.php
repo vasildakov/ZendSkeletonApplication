@@ -77,6 +77,31 @@ class Country
     private $sub_region_code;  
 
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="smallint", nullable=true)
+     */
+    private $status;
+
+
+
+    public function __construct() 
+    {
+        
+    }
+
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
 
     /**
      * Set name
@@ -101,6 +126,12 @@ class Country
     }
 
 
+    /**
+     * Set alpha2
+     *
+     * @param string $alpha2
+     * @return Country
+     */
     public function setAlpha2($alpha2) 
     {
         $this->alpha2 = $alpha2;
@@ -114,7 +145,12 @@ class Country
     }
 
 
-
+    /**
+     * Set alpha3
+     *
+     * @param string $alpha3
+     * @return Country
+     */
     public function setAlpha3($alpha3) 
     {
         $this->alpha3 = $alpha3;
@@ -129,16 +165,6 @@ class Country
 
 
     /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set country_code
      *
      * @param string $countryCode
@@ -151,6 +177,7 @@ class Country
         return $this;
     }
 
+
     /**
      * Get country_code
      *
@@ -160,6 +187,7 @@ class Country
     {
         return $this->country_code;
     }
+
 
     /**
      * Set iso_3166_2
@@ -174,6 +202,7 @@ class Country
         return $this;
     }
 
+
     /**
      * Get iso_3166_2
      *
@@ -183,6 +212,7 @@ class Country
     {
         return $this->iso_3166_2;
     }
+
 
     /**
      * Set region_code
@@ -197,6 +227,7 @@ class Country
         return $this;
     }
 
+
     /**
      * Get region_code
      *
@@ -206,6 +237,7 @@ class Country
     {
         return $this->region_code;
     }
+
 
     /**
      * Set sub_region_code
@@ -220,6 +252,7 @@ class Country
         return $this;
     }
 
+
     /**
      * Get sub_region_code
      *
@@ -228,5 +261,30 @@ class Country
     public function getSubRegionCode()
     {
         return $this->sub_region_code;
+    }
+
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return User
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+
+    /**
+     * Get status
+     *
+     * @return integer 
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

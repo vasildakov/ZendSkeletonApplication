@@ -262,7 +262,43 @@
 		<!-- BEGIN SIDEBAR MENU -->	
 		<p class="menu-title">BROWSE <span class="pull-right"><a href="javascript:;"><i class="fa fa-refresh"></i></a></span></p>
 		<ul>	
-			<li class="start active "> <a href="index.html"> <i class="icon-custom-home"></i> <span class="title">Dashboard</span> <span class="selected"></span> <span class="badge badge-important pull-right">5</span></a> </li>
+			<li class="start active"> 
+				<a href="<?php echo $this->url('backoffice') ?>"> 
+				<i class="icon-custom-home"></i> 
+				<span class="title">Dashboard</span> <span class="selected"></span> 
+				<span class="badge badge-disable pull-right">3</span></a> 
+			</li>
+
+			<li class="">
+				<a href="<?php echo $this->url('backoffice/user') ?>"> 
+				<i class="fa fa-user"></i> 
+				<span class="title">Users</span> <span class="selected"></span> 
+				<span class="badge badge-disable pull-right">56</span></a>
+			</li>
+
+			<li class=""> 
+				<a href="<?php echo $this->url('backoffice/site') ?>"> 
+				<i class="fa fa-globe"></i> 
+				<span class="title">Sites</span> <span class="selected"></span> 
+				<span class="badge badge-disable pull-right">256</span></a>
+			</li>
+
+			<li class=""> 
+				<a href="<?php echo $this->url('backoffice/campaign') ?>"> 
+				<i class="fa fa-cloud"></i> 
+				<span class="title">Campaigns</span> <span class="selected"></span> 
+				<span class="badge badge-disable pull-right">8</span></a> 
+			</li>
+
+			<li class=""> 
+				<a href="<?php #echo $this->url('backoffice/campaign') ?>"> 
+				<i class="fa fa-eur"></i> 
+				<span class="title">Rates</span> <span class="selected"></span> 
+				<span class="badge badge-disable pull-right">12</span></a> 
+			</li>
+
+			<hr style="height: 1px; border: 0; border-top: 1px solid #111; border-bottom: 1px solid #22262E;">
+
 			<li class=""> <a href="email.html"> <i class="fa fa-envelope"></i> <span class="title">Email</span>  <span class=" badge badge-disable pull-right ">203</span></a> </li>      
 			<li class=""> <a href="../frontend/index.html"> <i class="fa fa-flag"></i>  <span class="title">Frontend</span></a></li>      
 			<li class=""> <a href="javascript:;"> <i class="icon-custom-ui"></i> <span class="title">UI Elements</span> <span class="arrow "></span> </a>

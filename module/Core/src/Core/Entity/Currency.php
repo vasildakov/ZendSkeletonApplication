@@ -47,9 +47,36 @@ class Currency
     private $name; 
 
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="smallint", nullable=true)
+     */
+    private $status;
+
+
+    public function __construct() 
+    {
+        
+    }
+
+    
     public function getId() 
     {
     	$this->id;
+    }
+
+
+    /**
+     * Set cc
+     *
+     * @param string $cc
+     * @return Currency
+     */
+    public function setCc($cc) 
+    {
+        $this->cc = $cc;
+        return $this;
     }
 
 
@@ -58,18 +85,12 @@ class Currency
     }
 
 
-	public function setCc($cc) 
-	{
-        $this->cc = $cc;
-        return $this;
-	}
-
-
-    public function getSymbol() {
-    	$this->symbol;
-    }
-
-
+    /**
+     * Set symbol
+     *
+     * @param string $cc
+     * @return Currency
+     */
     public function setSymbol($symbol) 
     {
         $this->symbol = $symbol;
@@ -77,6 +98,18 @@ class Currency
     }
 
 
+    public function getSymbol() 
+    {
+    	$this->symbol;
+    }
+
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Currency
+     */
     public function setName($name) 
     {
         $this->name = $name;
@@ -84,7 +117,8 @@ class Currency
     }
 
 
-    public function getName() {
+    public function getName() 
+    {
     	$this->name;
     }
 

@@ -4,13 +4,18 @@ namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\Factory as InputFactory;
+use Zend\InputFilter\InputFilterAwareInterface;
+use Zend\InputFilter\InputFilterInterface; 
+
 /**
  * User
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="Core\Repository\UserRepository") 
  * @ORM\Table(name="user")
  */
-class User
+class User implements InputFilterAwareInterface
 {
 
     /**
@@ -24,6 +29,8 @@ class User
                     self::STATUS_VALIDATED  => "Validated"
                 );
 
+
+    protected $inputFilter;
 
     /**
      * @var integer
@@ -108,9 +115,130 @@ class User
     public function __construct()
     {
         $this->created_at = new \DateTime(); 
-        $this->status = 2; 
+
+        $this->status = self::STATUS_PENDING; 
     }
 
+
+    /**
+     * Magic getter to expose protected properties.
+     *
+     * @param string $property
+     * @return mixed
+     */
+    public function __get($property)
+    {
+        return $this->$property;
+    }
+
+
+    /**
+     * Magic setter to save protected properties.
+     *
+     * @param string $property
+     * @param mixed $value
+     */
+    public function __set($property, $value)
+    {
+        $this->$property = $value;
+    }
+
+
+    /**
+     * Convert the object to an array.
+     *
+     * @return array
+     */
+    public function getArrayCopy()
+    {
+        return get_object_vars($this);
+    }
+
+
+    /**
+     * Populate from an array.
+     *
+     * @param array $data
+     */
+    public function populate($data = array())
+    {
+        $this->id       = $data['id'];
+        $this->name     = $data['name'];
+        $this->surname  = $data['surname'];
+        $this->username = $data['username'];
+        $this->email    = $data['email'];
+        #$this->password = $data['password'];
+        $this->role     = $data['role'];
+        
+    }
+
+
+    public function setInputFilter(InputFilterInterface $inputFilter)
+    {
+        throw new \Exception("Not used");
+    }
+
+
+    public function getInputFilter() 
+    {
+        // http://www.jasongrimes.org/2012/01/using-doctrine-2-in-zend-framework-2/
+        if (!$this->inputFilter) {
+
+            $inputFilter = new InputFilter();
+
+            $factory = new InputFactory();
+
+            $inputFilter->add($factory->createInput(array(
+                'name' => 'id',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'Int'),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name' => 'name',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min' => 1,
+                            'max' => 100,
+                        ),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name' => 'surname',
+                'required' => true,
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min' => 1,
+                            'max' => 100,
+                        ),
+                    ),
+                ),
+            )));            
+
+            $this->inputFilter = $inputFilter;  
+        }
+
+        return $this->inputFilter;
+    }
 
 
     /**
@@ -133,6 +261,7 @@ class User
     public function setUsername($username)
     {
         $this->username = $username;
+
         return $this;
     }
 
@@ -157,6 +286,7 @@ class User
     public function setPassword($password)
     {
         $this->password = md5($password);
+
         return $this;
     }
 
@@ -181,6 +311,7 @@ class User
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -205,6 +336,7 @@ class User
     public function setSurname($surname)
     {
         $this->surname = $surname;
+
         return $this;
     }
 
@@ -229,6 +361,7 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -253,6 +386,7 @@ class User
     public function setCreatedAt($created_at)
     {
         $this->created_at = $created_at;
+
         return $this;
     }
 
@@ -278,6 +412,7 @@ class User
     public function setUpdatedAt($updated_at)
     {
         $this->updated_at = $updated_at;
+
         return $this;
     }
 
@@ -289,8 +424,9 @@ class User
      */
     public function getUpdatedAt()
     {
-        //return $this->created_at;
-        return $this->updated_at->format('Y-m-d');
+        // return $this->created_at;
+        // return $this->updated_at->format('Y-m-d');
+        return $this->updated_at;
     }
 
 
@@ -303,6 +439,7 @@ class User
     public function setStatus($status)
     {
         $this->status = $status;
+
         return $this;
     }
 
@@ -326,6 +463,7 @@ class User
     public function setRole(\Core\Entity\Role $role = null)
     {
         $this->role = $role;
+        
         return $this;
     }
 
@@ -339,5 +477,6 @@ class User
     {
         return $this->role;
     }
+
  
 }

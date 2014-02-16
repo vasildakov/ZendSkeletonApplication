@@ -32,6 +32,7 @@ class LoadCountryData implements OrderedFixtureInterface, FixtureInterface
             $country->setName($record['name']);
             $country->setAlpha2($record['alpha-2']);
             $country->setAlpha3($record['alpha-3']);
+            $country->setStatus(1);
 
             $objectManager->persist($country);
             $objectManager->flush();
