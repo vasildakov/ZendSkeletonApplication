@@ -84,8 +84,8 @@ class Module {
                 },
             ),
             'invokables' => array(
-                'loggingService'  => 'Core\Service\LoggingService',
-                'greetingService' => 'Core\Service\GreetingService',
+                'loggingService'    => 'Core\Service\LoggingService',
+                'greetingService'   => 'Core\Service\GreetingService',
             ),
             'services' => array(),
             'shared' => array(),
@@ -109,6 +109,11 @@ class Module {
                     $request = $locator->get('Request');
                     
                     return new RenderForm($form, $request);
+                },
+                'testHelper' => function($serviceManager) {
+                    $entityManager = $serviceManager->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+                    $helper = new \Core\View\Helper\TestHelper($entityManager);
+                    return $helper;
                 }
             ),
         );

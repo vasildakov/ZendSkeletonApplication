@@ -266,28 +266,28 @@
 				<a href="<?php echo $this->url('backoffice') ?>"> 
 				<i class="icon-custom-home"></i> 
 				<span class="title">Dashboard</span> <span class="selected"></span> 
-				<span class="badge badge-disable pull-right">3</span></a> 
+				<span class="badge badge-disable pull-right"><?=$this->testHelper("Dashboard");?></span></a> 
 			</li>
 
 			<li class="">
 				<a href="<?php echo $this->url('backoffice/user') ?>"> 
 				<i class="fa fa-user"></i> 
 				<span class="title">Users</span> <span class="selected"></span> 
-				<span class="badge badge-disable pull-right">56</span></a>
+				<span class="badge badge-disable pull-right"><?=$this->testHelper("User");?></span></a>
 			</li>
 
 			<li class=""> 
 				<a href="<?php echo $this->url('backoffice/site') ?>"> 
 				<i class="fa fa-globe"></i> 
 				<span class="title">Sites</span> <span class="selected"></span> 
-				<span class="badge badge-disable pull-right">256</span></a>
+				<span class="badge badge-disable pull-right"><?=$this->testHelper("Site");?></span></a>
 			</li>
 
 			<li class=""> 
 				<a href="<?php echo $this->url('backoffice/campaign') ?>"> 
 				<i class="fa fa-cloud"></i> 
 				<span class="title">Campaigns</span> <span class="selected"></span> 
-				<span class="badge badge-disable pull-right">8</span></a> 
+				<span class="badge badge-disable pull-right"><?=$this->testHelper("Campaign");?></span></a> 
 			</li>
 
 			<li class=""> 
@@ -433,7 +433,7 @@
 				</div>	
 
 				<div id="container">
-					<?php echo $this->content; ?>
+				<?php echo $this->content; ?>
 				</div>  
 				<!-- END PAGE --> 
 			</div>
