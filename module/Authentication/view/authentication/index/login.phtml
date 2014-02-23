@@ -1,0 +1,52 @@
+<div class="row login-container animated fadeInUp">
+    <div class="col-md-8 col-md-offset-2 tiles white no-padding" style="border:1px solid #E0E0E0;">
+        <div class="p-t-30 p-l-40 p-b-20 xs-p-t-10 xs-p-l-10 xs-p-b-10"> 
+              <h2 class="normal">Sign in</h2>
+              <p>Use Facebook, Twitter or your email to sign in.<br></p>
+              <p class="p-b-20">Sign up Now! for webarch accounts, it's free and always will be..</p>
+        </div>
+        <div class="tiles grey p-t-20 p-b-20 text-black">
+            <?php
+            $form = $this->form;
+            $form->setAttribute("id", "frm_login")
+                 ->setAttribute("class", "");;
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            ?>
+            <div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                <div class="col-md-6 col-sm-6 ">
+                    <?php #echo $this->formLabel($form->get('email')); ?>
+                    <?php echo $this->formInput($form->get('email')->setAttribute("id", "login_username") ); ?>
+                    <?php echo $this->formElementErrors($form->get('email')); ?>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <?php #echo $this->formLabel($form->get('password')); ?>
+                    <?php echo $this->formInput($form->get('password')->setAttribute("id", "login_pass") ); ?>
+                    <?php echo $this->formElementErrors($form->get('password')); ?>
+                </div>
+            </div>
+
+            <div class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                <div class="control-group col-md-10">
+                    <div class="checkbox checkbox check-success">
+                        <input type="checkbox" id="checkbox1" value="1">
+                        <label for="checkbox1">Keep me reminded </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+                <div class="col-md-6 col-sm-6">
+                    <?php echo $this->formRow($form->get('submit')->setAttribute("class", "btn btn-info btn-cons") ) ; ?>
+                </div>
+            </div>
+
+            <?php echo $this->form()->closeTag();?>
+        </div>
+    </div>
+</div>
+
+
+
+

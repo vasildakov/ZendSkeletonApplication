@@ -69,16 +69,6 @@ class Module {
             'abstract_factories' => array(),
             'aliases' => array(),
             'factories' => array(
-                'Core\Form\User\Signup' => function($serviceManager) {
-                    $entityManager = $serviceManager->get('Doctrine\ORM\EntityManager');
-                    $form = new \Core\Form\User\Signup($entityManager);
-                    return $form;
-                },
-                'Core\Form\User\Search' => function($serviceManager) {
-                    $entityManager = $serviceManager->get('Doctrine\ORM\EntityManager');
-                    $form = new \Core\Form\User\Search($entityManager);
-                    return $form;
-                },
                 'Zend\Authentication\AuthenticationService' => function($serviceManager) {
                     return $serviceManager->get('doctrine.authenticationservice.orm_default');  
                 },
@@ -115,6 +105,9 @@ class Module {
                     $helper = new \Core\View\Helper\TestHelper($entityManager);
                     return $helper;
                 }
+            ),
+            'invokables' => array(
+                'FormElementErrors' => 'Core\Form\View\Helper\FormElementErrors'
             ),
         );
     }

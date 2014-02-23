@@ -75,10 +75,6 @@ class Module
         $controllerClass = get_class($controller);
         $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
 
-
-
-        
-
     }
 
 
@@ -100,6 +96,27 @@ class Module
         return $config;   
     }
 
+
+    public function getServiceConfig()
+    {
+        return array(
+            'abstract_factories' => array(),
+            'aliases' => array(),
+            'factories' => array(
+                'Core\Form\User\Search' => function($serviceManager) {
+                    $entityManager = $serviceManager->get('Doctrine\ORM\EntityManager');
+                    $form = new \Core\Form\User\Search($entityManager);
+                    return $form;
+                },
+            ),
+            'invokables' => array(
+                'loggingService'    => 'Core\Service\LoggingService',
+                'greetingService'   => 'Core\Service\GreetingService',
+            ),
+            'services' => array(),
+            'shared' => array(),
+        );
+    }
 
 
     public function getAutoloaderConfig()
