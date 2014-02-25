@@ -62,6 +62,10 @@ class Module
                     $form = new \Core\Form\User\Signup($entityManager);
                     return $form;
                 },
+                'SignupForm' => function($serviceManager) {
+                    $form = new \Core\Form\UserSignupForm($serviceManager);
+                    return $form;
+                },
                 'Zend\Authentication\AuthenticationService' => function($serviceManager) {
                     return $serviceManager->get('doctrine.authenticationservice.orm_default');  
                 },

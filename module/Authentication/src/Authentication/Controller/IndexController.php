@@ -123,7 +123,7 @@ class IndexController extends AbstractActionController
 
 
     	// (2) get form service factory
-    	$form = $this->getServiceLocator()->get('Core\Form\User\Signup');
+    	$form = $this->getServiceLocator()->get('SignupForm');
         
 
     	$request = $this->getRequest();
