@@ -81,15 +81,15 @@ class IndexController extends AbstractActionController
 
                 // the redirect must be determined by user role
                 return $this->redirect()->toRoute('backoffice');
-
             }
-            #var_dump($form->getMessages());
 
+            $this->flashMessenger()->addMessage('Invalid username or password!' );
     	}
+
 
     	return new ViewModel(array(
             'form' => $form,
-            'messages'  => $this->flashmessenger()->getMessages()
+            'messages'  => $this->flashMessenger()->getMessages(),
         ));
     }
 

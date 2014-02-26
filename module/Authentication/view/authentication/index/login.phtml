@@ -25,6 +25,13 @@
                     <?php echo $this->formInput($form->get('password')->setAttribute("id", "login_pass") ); ?>
                     <?php echo $this->formElementErrors($form->get('password')); ?>
                 </div>
+
+                <?php if($messages): foreach ($messages as $message) : ?>
+                    <div class="col-md-6 col-sm-6">
+                        <p class="text-danger"><?php echo $message; ?></p>
+                    </div>
+                <?php endforeach; endif; ?>
+
             </div>
 
             <div class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
@@ -39,6 +46,7 @@
             <div class="row p-t-10 m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
                 <div class="col-md-6 col-sm-6">
                     <?php echo $this->formRow($form->get('submit')->setAttribute("class", "btn btn-info btn-cons") ) ; ?>
+                    <a href="<?php echo $this->url('signup') ?>" class="btn btn-cons btn-success">Register</a>
                 </div>
             </div>
 

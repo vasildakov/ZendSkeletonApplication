@@ -9,11 +9,24 @@
 
 namespace Application;
 
+use Zend\EventManager\EventInterface as Event;
+use Zend\ModuleManager\ModuleManager;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
 class Module
 {
+
+    public function init(ModuleManager $moduleManager) 
+    {
+        $sharedEvents = $moduleManager->getEventManager()->getSharedManager();
+
+        $sharedEvents->attach(__NAMESPACE__, 'dispatch', function($e) {
+            //var_dump( array(__NAMESPACE__) );
+        }, 100);
+    }
+
+
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
