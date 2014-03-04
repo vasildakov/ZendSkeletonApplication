@@ -3,6 +3,7 @@
 namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFactory;
@@ -12,6 +13,7 @@ use Zend\InputFilter\InputFilterInterface;
 /**
  * Campaign
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="Core\Repository\CampaignRepository") 
  * @ORM\Table(name="campaign")
  */
@@ -39,6 +41,34 @@ class Campaign implements InputFilterAwareInterface
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     */
+    private $description;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="string", length=255, nullable=true)
+     */
+    private $comment;
+
+
+    /**
+     * @var \Core\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Core\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="created_by", referencedColumnName="id")
+     * })
+     */
+    private $created_by;
+
+
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
@@ -59,7 +89,7 @@ class Campaign implements InputFilterAwareInterface
      *
      * @ORM\Column(name="ended_at", type="datetime", nullable=true)
      */
-    private $ended_at;  
+    private $ended_at;
 
 
     /**
@@ -73,9 +103,19 @@ class Campaign implements InputFilterAwareInterface
     private $operator;
 
 
+    /**
+     * @var \Core\Entity\Language
+     *
+     * @ORM\ManyToMany(targetEntity="Core\Entity\Language")
+     * @ORM\JoinTable(name="campaign_language", joinColumns={@ORM\JoinColumn(name="campaign_id", referencedColumnName="id")} )
+     */
+    private $languages;
+
 
     public function __construct() 
     {
+        $this->languages = new ArrayCollection();
+
         $this->created_at = new \DateTime(); 
     }
 
@@ -113,6 +153,7 @@ class Campaign implements InputFilterAwareInterface
         return get_object_vars($this);
     }
 
+
     /**
      * Populate from an array.
      *
@@ -120,9 +161,11 @@ class Campaign implements InputFilterAwareInterface
      */
     public function populate($data = array())
     {
-        $this->id       = $data['id'];
-        $this->name     = $data['name'];
-        $this->operator = $data['operator'];
+        $this->id           = $data['id'];
+        $this->name         = $data['name'];
+        $this->started_at   = (isset($data['started_at'])) ? $data['started_at'] : null;
+        $this->ended_at     = (isset($data['ended_at'])) ? $data['ended_at'] : null;
+        $this->operator     = $data['operator'];
         
     }
 
@@ -131,6 +174,7 @@ class Campaign implements InputFilterAwareInterface
     {
         throw new \Exception("Not used");
     }
+
 
     public function getInputFilter() 
     {
@@ -160,7 +204,7 @@ class Campaign implements InputFilterAwareInterface
                         'name' => 'StringLength',
                         'options' => array(
                             'encoding' => 'UTF-8',
-                            'min' => 1,
+                            'min' => 6,
                             'max' => 100,
                         ),
                     ),
@@ -174,6 +218,16 @@ class Campaign implements InputFilterAwareInterface
         }
 
         return $this->inputFilter;
+    }
+
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        // http://docs.doctrine-project.org/en/2.0.x/reference/events.html
+        $this->comment = 'changed from prePersist callback!';
     }
 
 
@@ -231,7 +285,7 @@ class Campaign implements InputFilterAwareInterface
      */
     public function getCreatedAt()
     {
-        //return $this->created_at;
+        // return $this->created_at;
         return $this->created_at->format('Y-m-d');
     }
 
@@ -257,7 +311,7 @@ class Campaign implements InputFilterAwareInterface
      */
     public function getStartedAt()
     {
-        //return $this->created_at;
+        // return $this->created_at;
         return $this->started_at->format('Y-m-d');
     }
 
@@ -284,8 +338,33 @@ class Campaign implements InputFilterAwareInterface
     public function getEndedAt()
     {
         return $this->ended_at->format('Y-m-d');
+        // return $this->ended_at;
     }
 
+
+    /**
+     * Set user
+     *
+     * @param \Core\Entity\User $user
+     * @return Campaign
+     */
+    public function setCreatedBy(\Core\Entity\User $user = null)
+    {
+        $this->created_by = $user;
+        
+        return $this;
+    }
+
+
+    /**
+     * Get user
+     *
+     * @return \Core\Entity\User 
+     */
+    public function getCreatedBy()
+    {
+        return $this->created_by;
+    }
 
     /**
      * Set operator
@@ -311,5 +390,16 @@ class Campaign implements InputFilterAwareInterface
         return $this->operator;
     }
 
+
+    public function getLanguages() 
+    {
+        return $this->languages;
+    }
+
+
+    public function addLanguage(\Core\Entity\Language $language) 
+    {
+        $this->languages[] = $language;
+    }
 
 }

@@ -64,8 +64,7 @@ class CampaignController extends AbstractActionController
 
     public function createAction()
     {
-        #$form = new \Core\Form\Campaign\TestForm();
-        $form = $this->getServiceLocator()->get('FormElementManager')->get('TestForm');
+        $form = new \Core\Form\CampaignForm($this->getEntityManager());
 
         $request = $this->getRequest();
 
@@ -75,13 +74,39 @@ class CampaignController extends AbstractActionController
 
             if ($form->isValid()) {
 
-                $campaign = new \Core\Entity\Campaign;
-                $campaign->setName($request->getPost('name'));
-                $campaign->setStartedAt($request->getPost('started_at'));
-                $campaign->setEndedAt($request->getPost('ended_at'));
-                // var_dump($campaign);
+                $operatorId  = $this->getRequest()->getPost('operator');
+                $languageIds = $this->getRequest()->getPost('language');
+                $started_at  = $this->getRequest()->getPost('started_at');
+                $ended_at    = $this->getRequest()->getPost('ended_at');
 
-                var_dump( array($request->getPost()));  
+                $operator    = $this->getEntityManager()->find('Core\Entity\Operator', $operatorId);
+                $user        = $this->getEntityManager()->find('Core\Entity\User', 1);
+
+                $campaign    = new \Core\Entity\Campaign;
+                
+                $campaign->populate($form->getData());
+                $campaign->setOperator($operator);
+
+                
+                $campaign->setCreatedBy($user);
+                $campaign->setStartedAt( new \DateTime($started_at) );
+                $campaign->setEndedAt( new \DateTime($ended_at) );
+
+                foreach ($languageIds as $languageId) {
+                    $language = $this->getEntityManager()->find('Core\Entity\Language', $languageId);
+                    $campaign->addLanguage($language);
+                }
+
+                $this->getEntityManager()->persist($campaign);
+                $this->getEntityManager()->flush();
+                return $this->redirect()->toRoute('backoffice/campaign'); 
+
+                #$campaign = new \Core\Entity\Campaign;
+                #$campaign->setName($request->getPost('name'));
+                #$campaign->setStartedAt($request->getPost('started_at'));
+                #$campaign->setEndedAt($request->getPost('ended_at'));
+                // var_dump($campaign);
+                // var_dump( array($request->getPost()));  
                 
             }else {
                 $messages = $form->getMessages();
@@ -101,18 +126,18 @@ class CampaignController extends AbstractActionController
     public function editAction()
     {
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
-        $site = $this->getEntityManager()->find('Core\Entity\Campaign', $id);
+        $campaign = $this->getEntityManager()->find('Core\Entity\Campaign', $id);
 
         $form = new CampaignForm($this->getEntityManager());
         #$form->setBindOnValidate(false);
-        $form->bind($site);
+        $form->bind($campaign);
         $form->get('submit')->setAttribute('value', 'Save');
 
         $request = $this->getRequest();
 
         if ($request->isPost()) {
             
-            $form->setInputFilter($site->getInputFilter());
+            $form->setInputFilter($campaign->getInputFilter());
             $form->setData($request->getPost());
 
             if ($form->isValid()) {

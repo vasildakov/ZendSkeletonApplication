@@ -69,31 +69,22 @@
 
 
 					        <div class="form-group">
-					        	<label class="form-label" for="name">Operator</label>
+					        	<?php echo $this->formLabel($form->get('operator')); ?>
 					        	<span class="help">e.g. Lorem ipsum dolor sit amet, consectetur.</span>
-					        	<div class="controls">
-						        	<select name="" class="select2" style="width:100%">
-						        		<option value="">Operator</option>
-						        	</select>
-					        	</div>
+					        	<div class="controls"><?php echo $this->formSelect($form->get('operator')); ?></div>
+					        	<?php echo $this->formElementErrors($form->get('operator')); ?>
 					        </div>
 
 					        <div class="form-group">
-					        	<label class="form-label" for="name">Category</label>
-					        	<div class="controls">
-						        	<select name="" class="select2" style="width:100%">
-						        		<option value="">Category</option>
-						        	</select>
-						        </div>
+					        	<?php echo $this->formLabel($form->get('category')); ?>
+					        	<div class="controls"><?php echo $this->formSelect($form->get('category')); ?></div>
+						        <?php echo $this->formElementErrors($form->get('category')); ?>
 					        </div>
 
 					        <div class="form-group">
-					        	<label class="form-label" for="name">Language(s)</label>
-					        	<select name="" class="select2" style="width:100%">
-					        		<option value="">Language</option>
-					        		<option value="">English</option>
-					        		<option value="">French</option>
-					        	</select>
+					        	<?php echo $this->formLabel($form->get('language')); ?>
+					        	<div class="controls"><?php echo $this->formSelect($form->get('language')); ?></div>
+					        	<?php echo $this->formElementErrors($form->get('language')); ?>
 					        </div>
 
 
@@ -182,7 +173,7 @@ $(document).ready(function() {
 
 	$(function(){
 		$(".select2").select2({
-			//width: 'resolve',
+			width: 'resolve',
 			minimumResultsForSearch: -1,
 			dropdownAutoWidth : true
 		});

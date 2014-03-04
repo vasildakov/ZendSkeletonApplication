@@ -51,9 +51,28 @@ class User extends \Core\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__cloner__      = $cloner;
     }
 
+    /**
+     * {@inheritDoc}
+     * @param string $name
+     */
+    public function __get($name)
+    {
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__get', array($name));
 
+        return parent::__get($name);
+    }
 
+    /**
+     * {@inheritDoc}
+     * @param string $name
+     * @param mixed  $value
+     */
+    public function __set($name, $value)
+    {
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__set', array($name, $value));
 
+        return parent::__set($name, $value);
+    }
 
 
 
@@ -64,10 +83,10 @@ class User extends \Core\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'username', 'password', 'firstName', 'lastName', 'email', 'date', 'status');
+            return array('__isInitialized__', 'statusOptions', 'inputFilter', 'id', 'username', 'password', 'name', 'surname', 'email', 'created_at', 'updated_at', 'status', 'role');
         }
 
-        return array('__isInitialized__', 'id', 'username', 'password', 'firstName', 'lastName', 'email', 'date', 'status');
+        return array('__isInitialized__', 'statusOptions', 'inputFilter', 'id', 'username', 'password', 'name', 'surname', 'email', 'created_at', 'updated_at', 'status', 'role');
     }
 
     /**
@@ -176,6 +195,51 @@ class User extends \Core\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getArrayCopy()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArrayCopy', array());
+
+        return parent::getArrayCopy();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function populate($data = array (
+))
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'populate', array($data));
+
+        return parent::populate($data);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setInputFilter(\Zend\InputFilter\InputFilterInterface $inputFilter)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInputFilter', array($inputFilter));
+
+        return parent::setInputFilter($inputFilter);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getInputFilter()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInputFilter', array());
+
+        return parent::getInputFilter();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
@@ -235,45 +299,45 @@ class User extends \Core\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setFirstName($firstName)
+    public function setName($name)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFirstName', array($firstName));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', array($name));
 
-        return parent::setFirstName($firstName);
+        return parent::setName($name);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getFirstName()
+    public function getName()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFirstName', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', array());
 
-        return parent::getFirstName();
+        return parent::getName();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setLastName($lastName)
+    public function setSurname($surname)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLastName', array($lastName));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSurname', array($surname));
 
-        return parent::setLastName($lastName);
+        return parent::setSurname($surname);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getLastName()
+    public function getSurname()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLastName', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSurname', array());
 
-        return parent::getLastName();
+        return parent::getSurname();
     }
 
     /**
@@ -301,23 +365,45 @@ class User extends \Core\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setDate($date)
+    public function setCreatedAt($created_at)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDate', array($date));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreatedAt', array($created_at));
 
-        return parent::setDate($date);
+        return parent::setCreatedAt($created_at);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getDate()
+    public function getCreatedAt()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDate', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreatedAt', array());
 
-        return parent::getDate();
+        return parent::getCreatedAt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUpdatedAt($updated_at)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUpdatedAt', array($updated_at));
+
+        return parent::setUpdatedAt($updated_at);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUpdatedAt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUpdatedAt', array());
+
+        return parent::getUpdatedAt();
     }
 
     /**
@@ -340,6 +426,28 @@ class User extends \Core\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', array());
 
         return parent::getStatus();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setRole(\Core\Entity\Role $role = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRole', array($role));
+
+        return parent::setRole($role);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRole()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRole', array());
+
+        return parent::getRole();
     }
 
 }

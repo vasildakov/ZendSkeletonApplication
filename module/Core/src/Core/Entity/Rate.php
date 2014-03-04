@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Rate
 {
 
+
+    const TYPE_STANDARD  = 1;
+    const TYPE_SPECIAL    = 2;
+
+    public $typeOptions = array(
+                    self::TYPE_STANDARD    => "Standard",
+                    self::TYPE_SPECIAL  => "Special"
+                );
+
     /**
      * @var integer
      * 
@@ -51,6 +60,30 @@ class Rate
 
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="smallint", nullable=true)
+     */
+    private $type;
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="started_at", type="datetime", nullable=true)
+     */
+    private $started_at;    
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="ended_at", type="datetime", nullable=true)
+     */
+    private $ended_at;  
+
+
+    /**
      * @var \Core\Entity\Currency
      *
      * @ORM\OneToOne(targetEntity="Core\Entity\Currency")
@@ -61,9 +94,22 @@ class Rate
     private $currency;
 
 
+
     public function __construct() 
     {
         
     }
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
 
 }

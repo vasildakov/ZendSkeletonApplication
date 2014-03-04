@@ -33,7 +33,7 @@ class Module
         // so what we’re really talking about is the topmost namespace of the controller being dispatched.
         // This event will only be fired under the Backoffice namespace.
         $sharedEvents->attach(__NAMESPACE__, 'dispatch', function($e) {
-            var_dump( array(__NAMESPACE__) );
+            // var_dump( array(__NAMESPACE__) );
         }, 100);
     }
 

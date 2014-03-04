@@ -19,6 +19,10 @@ class CampaignForm extends Form
     {
         parent::__construct('campaign');
 
+        $today = new \DateTime();
+        $tomorrow = clone $today;
+        $tomorrow->modify('+1 day');
+
         $this->setHydrator(new DoctrineHydrator($entityManager));
 
         $this->setAttributes( array(
@@ -40,7 +44,7 @@ class CampaignForm extends Form
             'name' => 'name',
             'attributes' => array(
                 'type'  => 'text',
-                'placeholder' => 'Name',
+                'placeholder' => 'Campaign Name',
                 'class' => 'form-control'
             ),
             'options' => array(
@@ -51,6 +55,44 @@ class CampaignForm extends Form
                 ),
             ),
         ));
+
+
+        // Bar
+        $this->add(array(
+            'name' => 'bar',
+            'attributes' => array(
+                'type'  => 'text',
+                'placeholder' => '',
+                'class' => 'form-control',
+                'required' => 'required',
+            ),
+            'options' => array(
+                'label' => 'Bar',
+                'label_attributes' => array(
+                    'for' => 'Name',
+                    'class'  => 'form-label'
+                ),
+            ),
+        ));
+
+        // Foo depends on Bar
+        $this->add(array(
+            'name' => 'foo',
+            'attributes' => array(
+                'type'  => 'text',
+                'placeholder' => '',
+                'class' => 'form-control',
+                'required' => 'required',
+            ),
+            'options' => array(
+                'label' => 'Foo',
+                'label_attributes' => array(
+                    'for' => 'Name',
+                    'class'  => 'form-label'
+                ),
+            ),
+        ));
+
 
         // operator
         $this->add(array(
@@ -71,6 +113,105 @@ class CampaignForm extends Form
                 'target_class' => 'Core\Entity\Operator',
                 'property' => 'name',
             )
+        ));
+
+
+        // category
+        $this->add(array(
+            'name' => 'category',
+            'attributes' => array(
+                'type'  => 'select',
+                'class' => 'select2'
+            ),
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'options' => array(
+                'label' => 'Category',
+                'empty_option'    => '',
+                'label_attributes' => array(
+                    'for' => 'Category',
+                    'class'  => 'form-label'
+                ),
+                'object_manager' => $entityManager,
+                'target_class' => 'Core\Entity\Category',
+                'property' => 'name',
+            )
+        ));
+
+        // language
+        $this->add(array(
+            'name' => 'language',
+            'attributes' => array(
+                'type'  => 'select',
+                'class' => 'select2',
+                'multiple' => 'multiple',
+            ),
+            'type' => 'DoctrineModule\Form\Element\ObjectSelect',
+            'options' => array(
+                'label' => 'Language',
+                'empty_option'    => '',
+                'label_attributes' => array(
+                    'for' => 'Language',
+                    'class'  => 'form-label'
+                ),
+                'object_manager' => $entityManager,
+                'target_class' => 'Core\Entity\Language',
+                'property' => 'name',
+                'is_method' => true,
+                'find_method' => array(
+                    'name' => 'findBy',
+                    'params' => array(
+                        'criteria' => array('status' => \Core\Entity\Language::STATUS_ACTIVE),
+                        'orderBy' => array('name' => "ASC"),
+                    ),
+                )
+            )
+        ));
+
+
+        // started at
+        $this->add(array(
+            'name' => 'started_at',
+            'attributes' => array(
+                'type'  => 'text',
+                'placeholder' => 'Started',
+                'class' => 'datetime',
+                'id' => 'started_at',
+                // 'value' => date("Y-m-d H:i"),
+                'value' => $today->format("Y-m-d"),
+                'data-format' => "YYYY-MM-DD",
+                'data-template' => "D MMM YYYY",
+                'required' => 'required',
+            ),
+            'options' => array(
+                'label' => 'Started',
+                'label_attributes' => array(
+                    'for' => 'Started',
+                    'class'  => 'form-label'
+                ),
+            ),
+        ));
+
+
+        // ended at
+        $this->add(array(
+            'name' => 'ended_at',
+            'attributes' => array(
+                'type'  => 'text',
+                'placeholder' => 'Ended',
+                'class' => 'datetime',
+                'id' => 'ended_at',
+                'value' => $tomorrow->format("Y-m-d"),
+                'data-format' => "YYYY-MM-DD",
+                'data-template' => "D MMM YYYY",
+                'required' => 'required',
+            ),
+            'options' => array(
+                'label' => 'Ended',
+                'label_attributes' => array(
+                    'for' => 'Ended',
+                    'class'  => 'form-label'
+                ),
+            ),
         ));
 
 

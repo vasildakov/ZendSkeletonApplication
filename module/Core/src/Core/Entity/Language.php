@@ -12,6 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Language
 {
+    const STATUS_ACTIVE     = 1;
+    const STATUS_PENDING    = 2;
+
+    public $statusOptions = array(
+                    self::STATUS_PENDING    => "Pending",
+                    self::STATUS_ACTIVE  => "Active"
+                );
+
     /**
      * @var integer
      * 
