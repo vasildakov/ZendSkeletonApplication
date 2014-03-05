@@ -83,7 +83,7 @@ class CampaignController extends AbstractActionController
                 $user        = $this->getEntityManager()->find('Core\Entity\User', 1);
 
                 $campaign    = new \Core\Entity\Campaign;
-                
+
                 $campaign->populate($form->getData());
                 $campaign->setOperator($operator);
 
@@ -127,6 +127,18 @@ class CampaignController extends AbstractActionController
     {
         $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
         $campaign = $this->getEntityManager()->find('Core\Entity\Campaign', $id);
+
+        $english = $this->getEntityManager()->find('Core\Entity\Language', 40); // english language
+        $bulgarian = $this->getEntityManager()->find('Core\Entity\Language', 24); // bulgarian language
+
+        var_dump($campaign->hasLanguages()); 
+        var_dump($campaign->hasLanguage($english)); 
+        var_dump($campaign->hasLanguage($bulgarian)); 
+
+        var_dump($campaign->getLanguages()); 
+
+        exit();
+
 
         $form = new CampaignForm($this->getEntityManager());
         #$form->setBindOnValidate(false);

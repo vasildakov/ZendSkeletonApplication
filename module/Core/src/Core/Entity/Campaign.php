@@ -107,7 +107,9 @@ class Campaign implements InputFilterAwareInterface
      * @var \Core\Entity\Language
      *
      * @ORM\ManyToMany(targetEntity="Core\Entity\Language")
-     * @ORM\JoinTable(name="campaign_language", joinColumns={@ORM\JoinColumn(name="campaign_id", referencedColumnName="id")} )
+     * @ORM\JoinTable(name="campaign_language", 
+     *      joinColumns={@ORM\JoinColumn(name="campaign_id", referencedColumnName="id")
+     * })
      */
     private $languages;
 
@@ -161,11 +163,11 @@ class Campaign implements InputFilterAwareInterface
      */
     public function populate($data = array())
     {
-        $this->id           = $data['id'];
-        $this->name         = $data['name'];
-        $this->started_at   = (isset($data['started_at'])) ? $data['started_at'] : null;
-        $this->ended_at     = (isset($data['ended_at'])) ? $data['ended_at'] : null;
-        $this->operator     = $data['operator'];
+        $this->id           = (isset($data['id']))          ? $data['id']           : null;
+        $this->name         = (isset($data['name']))        ? $data['name']         : null;
+        $this->started_at   = (isset($data['started_at']))  ? $data['started_at']   : null;
+        $this->ended_at     = (isset($data['ended_at']))    ? $data['ended_at']     : null;
+        $this->operator     = (isset($data['operator']))    ? $data['operator']     : null;
         
     }
 
@@ -229,7 +231,6 @@ class Campaign implements InputFilterAwareInterface
         // http://docs.doctrine-project.org/en/2.0.x/reference/events.html
         $this->comment = 'changed from prePersist callback!';
     }
-
 
 
     /**
@@ -391,15 +392,63 @@ class Campaign implements InputFilterAwareInterface
     }
 
 
+    /**
+     * Returns true if the ending date is empty or higher than today
+     * @return boolean 
+     */
+    public function isActive() 
+    {
+        $ended = $this->started_at;
+        $today = new \DateTime();
+
+        return ( empty($ended) or $ended->format("Y-m-d") > $today->format("Y-m-d") ) ? true : false;
+    }
+
+
+    /**
+     * Returns true if the campaign has at least one language
+     * @return boolean 
+     */
+    public function hasLanguages() 
+    {
+        return !$this->languages->isEmpty();
+    }
+
+
+    /**
+     * Returns true if the campaign has a specific language
+     * @param \Core\Entity\Language $language
+     * @return boolean 
+     */
+    public function hasLanguage(\Core\Entity\Language $language) 
+    {
+        foreach($this->languages as $entity) {
+            if ($entity == $language) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * Returns campaign languages
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
     public function getLanguages() 
     {
         return $this->languages;
     }
 
 
+
+    /**
+     * @param \Core\Entity\Language $language
+     */
     public function addLanguage(\Core\Entity\Language $language) 
     {
         $this->languages[] = $language;
     }
+
 
 }

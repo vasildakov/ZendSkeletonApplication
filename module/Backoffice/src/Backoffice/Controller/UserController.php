@@ -129,6 +129,39 @@ class UserController extends AbstractActionController
 
 
 
+    public function deleteAction() 
+    {
+        $id = (int)$this->getEvent()->getRouteMatch()->getParam('id');
+        if (!$id) {
+            return $this->redirect()->toRoute('backoffice/user');
+        }
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $del = $request->getPost('del', 'No');
+
+            if ($del == 'Yes') {
+                $id = (int) $request->getPost('id');
+                $user = $this->getEntityManager()->find('Core\Entity\User', $id);
+
+                if ($user) {
+                    $this->getEntityManager()->remove($user);
+                    $this->getEntityManager()->flush();
+                }
+            }
+
+             // Redirect to list of users
+            return $this->redirect()->toRoute('backoffice/user');
+        }
+
+        return array(
+            'id' => $id,
+            'user' => $this->getEntityManager()->find('Core\Entity\User', $id)
+        );
+        
+    }
+
+
 
     public function test() 
     {

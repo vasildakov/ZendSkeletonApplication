@@ -21,9 +21,31 @@ class IndexController extends AbstractActionController
 
     protected $authservice;
 
+
+    /**
+     * @var Doctrine\ORM\EntityManager
+     */
+    protected $em;
+
+
     public function __construct() 
     {
         $this->module = 'backoffice';
+    }
+
+
+    public function setEntityManager(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
+
+    public function getEntityManager() 
+    {
+        if (null === $this->em) {
+            $this->em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        }
+        return $this->em;
     }
 
 
@@ -117,23 +139,32 @@ class IndexController extends AbstractActionController
      */
     public function signupAction() 
     {
-    	// (1) injecting doctrine EntityManager in form constructor
-        // $entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        // $form = new \Core\Form\SignupForm($entityManager);
 
-
-    	// (2) get form service factory
     	$form = $this->getServiceLocator()->get('SignupForm');
-        
-
     	$request = $this->getRequest();
 
     	if($request->isPost()) {
-    		$form->setData($request->getPost());
+
+            $user = new \Core\Entity\User;
+
+            // $form->setInputFilter($user->getInputFilter());
+            $form->setData($request->getPost());
 
             if ($form->isValid()) {
-                var_dump( $request->getPost() );
-                // var_dump($validData);
+                $role = $this->getEntityManager()->find('Core\Entity\Role', 1);
+                // $user->populate($form->getData());
+                $user->setUsername( $request->getPost('username'));
+                $user->setPassword( $request->getPost('password'));
+                $user->setEmail( $request->getPost('email'));
+                $user->setStatus(\Core\Entity\User::STATUS_PENDING);
+                $user->setRole($role);
+
+                $this->getEntityManager()->persist($user);
+                $this->getEntityManager()->flush();
+                return $this->redirect()->toRoute('backoffice/user'); 
+
+                // var_dump( $request->getPost() );
+                // var_dump($user);
             } 
             else {
                 $messages = $form->getMessages();

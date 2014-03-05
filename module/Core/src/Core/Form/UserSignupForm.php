@@ -105,6 +105,43 @@ class UserSignupForm  extends Form implements InputFilterProviderInterface
         ));
 
 
+        // Name
+        $this->add(array(
+            'name' => 'name',
+            'attributes' => array(
+                'type'  => 'text',
+                'placeholder' => 'Name',
+                'class' => 'form-control',
+            ),
+            'options' => array(
+                'label' => 'Name',
+                'label_attributes' => array(
+                    'for' => 'Name',
+                    'class'  => 'control-label'
+                ),
+            ),
+        ));
+
+
+        // Surname
+        $this->add(array(
+            'name' => 'surname',
+            'attributes' => array(
+                'type'  => 'text',
+                'placeholder' => 'Surname',
+                'class' => 'form-control',
+            ),
+            'options' => array(
+                'label' => 'Surname',
+                'label_attributes' => array(
+                    'for' => 'Surname',
+                    'class'  => 'control-label'
+                ),
+            ),
+        ));
+
+
+
         // country
         $this->add(array(
             'name' => 'country',

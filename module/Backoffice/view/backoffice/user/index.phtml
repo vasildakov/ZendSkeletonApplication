@@ -92,9 +92,10 @@
 									</button>
 									<ul class="dropdown-menu">
 										<li><a href="<?php echo $this->url('backoffice/user', 
-										array('action'=>'edit', 'id' => $user->getId()));?>">Edit</a></li>
+															array('action'=>'edit', 'id' => $user->getId()));?>">Edit</a></li>
 										<li><a href="#">View</a></li>
-										<li><a href="#">Delete</a></li>
+										<li><a href="<?php echo $this->url('backoffice/user', 
+															array('action'=>'delete', 'id' => $user->getId()));?>">Delete</a></li>
 									</ul>
 					    		</div>
 				    		</td>
