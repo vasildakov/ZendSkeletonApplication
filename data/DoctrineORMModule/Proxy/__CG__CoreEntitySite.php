@@ -51,9 +51,28 @@ class Site extends \Core\Entity\Site implements \Doctrine\ORM\Proxy\Proxy
         $this->__cloner__      = $cloner;
     }
 
+    /**
+     * {@inheritDoc}
+     * @param string $name
+     */
+    public function __get($name)
+    {
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__get', array($name));
 
+        return parent::__get($name);
+    }
 
+    /**
+     * {@inheritDoc}
+     * @param string $name
+     * @param mixed  $value
+     */
+    public function __set($name, $value)
+    {
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__set', array($name, $value));
 
+        return parent::__set($name, $value);
+    }
 
 
 
@@ -64,10 +83,10 @@ class Site extends \Core\Entity\Site implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'url');
+            return array('__isInitialized__', 'id', 'url', 'status', 'created_at', 'statusOptions', 'inputFilter');
         }
 
-        return array('__isInitialized__', 'id', 'url');
+        return array('__isInitialized__', 'id', 'url', 'status', 'created_at', 'statusOptions', 'inputFilter');
     }
 
     /**
@@ -176,6 +195,51 @@ class Site extends \Core\Entity\Site implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getArrayCopy()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArrayCopy', array());
+
+        return parent::getArrayCopy();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function populate($data = array (
+))
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'populate', array($data));
+
+        return parent::populate($data);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setInputFilter(\Zend\InputFilter\InputFilterInterface $inputFilter)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInputFilter', array($inputFilter));
+
+        return parent::setInputFilter($inputFilter);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getInputFilter()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInputFilter', array());
+
+        return parent::getInputFilter();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
@@ -208,6 +272,61 @@ class Site extends \Core\Entity\Site implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUrl', array());
 
         return parent::getUrl();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStatus($status)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatus', array($status));
+
+        return parent::setStatus($status);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatus()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', array());
+
+        return parent::getStatus();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatusName()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatusName', array());
+
+        return parent::getStatusName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCreatedAt($created_at)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreatedAt', array($created_at));
+
+        return parent::setCreatedAt($created_at);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreatedAt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreatedAt', array());
+
+        return parent::getCreatedAt();
     }
 
 }

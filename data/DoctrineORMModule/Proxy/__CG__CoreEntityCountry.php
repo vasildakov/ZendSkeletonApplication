@@ -64,10 +64,10 @@ class Country extends \Core\Entity\Country implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'name');
+            return array('__isInitialized__', 'id', 'name', 'alpha2', 'alpha3', 'country_code', 'iso_3166_2', 'region_code', 'sub_region_code', 'status');
         }
 
-        return array('__isInitialized__', 'id', 'name');
+        return array('__isInitialized__', 'id', 'name', 'alpha2', 'alpha3', 'country_code', 'iso_3166_2', 'region_code', 'sub_region_code', 'status');
     }
 
     /**
@@ -176,6 +176,21 @@ class Country extends \Core\Entity\Country implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getId()
+    {
+        if ($this->__isInitialized__ === false) {
+            return (int)  parent::getId();
+        }
+
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
+
+        return parent::getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setName($name)
     {
 
@@ -193,6 +208,160 @@ class Country extends \Core\Entity\Country implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', array());
 
         return parent::getName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAlpha2($alpha2)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAlpha2', array($alpha2));
+
+        return parent::setAlpha2($alpha2);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAlpha2()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAlpha2', array());
+
+        return parent::getAlpha2();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAlpha3($alpha3)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAlpha3', array($alpha3));
+
+        return parent::setAlpha3($alpha3);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAlpha3()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAlpha3', array());
+
+        return parent::getAlpha3();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCountryCode($countryCode)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCountryCode', array($countryCode));
+
+        return parent::setCountryCode($countryCode);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCountryCode()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCountryCode', array());
+
+        return parent::getCountryCode();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setIso31662($iso31662)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIso31662', array($iso31662));
+
+        return parent::setIso31662($iso31662);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getIso31662()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIso31662', array());
+
+        return parent::getIso31662();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setRegionCode($regionCode)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRegionCode', array($regionCode));
+
+        return parent::setRegionCode($regionCode);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRegionCode()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRegionCode', array());
+
+        return parent::getRegionCode();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSubRegionCode($subRegionCode)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSubRegionCode', array($subRegionCode));
+
+        return parent::setSubRegionCode($subRegionCode);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSubRegionCode()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSubRegionCode', array());
+
+        return parent::getSubRegionCode();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStatus($status)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatus', array($status));
+
+        return parent::setStatus($status);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatus()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', array());
+
+        return parent::getStatus();
     }
 
 }

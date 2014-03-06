@@ -64,10 +64,10 @@ class Language extends \Core\Entity\Language implements \Doctrine\ORM\Proxy\Prox
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'name');
+            return array('__isInitialized__', 'statusOptions', 'id', 'code', 'name', 'native_name', 'created_at', 'status');
         }
 
-        return array('__isInitialized__', 'id', 'name');
+        return array('__isInitialized__', 'statusOptions', 'id', 'code', 'name', 'native_name', 'created_at', 'status');
     }
 
     /**
@@ -176,6 +176,43 @@ class Language extends \Core\Entity\Language implements \Doctrine\ORM\Proxy\Prox
     /**
      * {@inheritDoc}
      */
+    public function getId()
+    {
+        if ($this->__isInitialized__ === false) {
+            return (int)  parent::getId();
+        }
+
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
+
+        return parent::getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCode($code)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCode', array($code));
+
+        return parent::setCode($code);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCode()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCode', array());
+
+        return parent::getCode();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setName($name)
     {
 
@@ -193,6 +230,72 @@ class Language extends \Core\Entity\Language implements \Doctrine\ORM\Proxy\Prox
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', array());
 
         return parent::getName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setNativeName($native_name)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNativeName', array($native_name));
+
+        return parent::setNativeName($native_name);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNativeName()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNativeName', array());
+
+        return parent::getNativeName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCreatedAt($created_at)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreatedAt', array($created_at));
+
+        return parent::setCreatedAt($created_at);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreatedAt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreatedAt', array());
+
+        return parent::getCreatedAt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStatus($status)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatus', array($status));
+
+        return parent::setStatus($status);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatus()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', array());
+
+        return parent::getStatus();
     }
 
 }

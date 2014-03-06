@@ -13,7 +13,7 @@ use Zend\InputFilter\InputFilterInterface;
  * User
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="Core\Repository\UserRepository") 
- * @ORM\Table(name="user")
+ * @ORM\Table(name="user", options={"engine" = "InnoDB" })
  */
 class User implements InputFilterAwareInterface
 {
