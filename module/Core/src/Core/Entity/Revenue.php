@@ -6,11 +6,11 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Impression
- * @ORM\Entity(repositoryClass="Core\Repository\ImpressionRepository") 
- * @ORM\Table(name="impression", options={"engine" = "MyISAM" })
+ * @ORM\Entity(repositoryClass="Core\Repository\RevenueRepository") 
+ * @ORM\Table(name="revenue", options={"engine" = "MyISAM" })
  * @ORM\Entity
  */
-class Impression
+class Revenue
 {
     /**
      * @var integer

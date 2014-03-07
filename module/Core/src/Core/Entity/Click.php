@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Click
  * @ORM\Entity(repositoryClass="Core\Repository\ClickRepository") 
- * @ORM\Table(name="click")
+ * @ORM\Table(name="click", options={"engine" = "MyISAM" })
  * @ORM\Entity
  */
 class Click
@@ -26,6 +26,7 @@ class Click
     {
         
     }
+    
 
     /**
      * Get id

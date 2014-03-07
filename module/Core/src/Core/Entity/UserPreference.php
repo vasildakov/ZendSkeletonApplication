@@ -48,7 +48,7 @@ class UserPreference
      * @param \Core\Entity\User $user
      * @return User
      */
-    public function setUser(\Core\Entity\Affiliate $user = null)
+    public function setUser(\Core\Entity\User $user = null)
     {
         $this->user = $user;
 

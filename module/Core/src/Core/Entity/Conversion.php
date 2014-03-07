@@ -26,6 +26,17 @@ class Conversion
 
 
     /**
+     * YYYY-MM-TYPE-CAMPAIGN-SITE eg. 2014-01-1-99-123456
+     * 
+     * @var string
+     *
+     * @ORM\Column(name="reference", type="string", length=255, nullable=true)
+     */
+    private $reference;
+
+
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="user_id", type="integer", nullable=true)
@@ -63,7 +74,6 @@ class Conversion
      * @ORM\Column(name="type", type="integer", nullable=true)
      */
     private $type;
-
 
 
     /**
