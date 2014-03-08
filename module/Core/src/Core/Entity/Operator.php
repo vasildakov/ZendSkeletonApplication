@@ -3,6 +3,7 @@
 namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Operator
@@ -48,6 +49,8 @@ class Operator
 
     public function __construct() 
     {
+        $this->invoices = new ArrayCollection();
+        
         $this->created_at = new \DateTime();
     }
 
@@ -119,4 +122,14 @@ class Operator
         return $this->created_at->format('Y-m-d');
     }
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }

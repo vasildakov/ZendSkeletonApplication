@@ -51,9 +51,28 @@ class Payment extends \Core\Entity\Payment implements \Doctrine\ORM\Proxy\Proxy
         $this->__cloner__      = $cloner;
     }
 
+    /**
+     * {@inheritDoc}
+     * @param string $name
+     */
+    public function __get($name)
+    {
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__get', array($name));
 
+        return parent::__get($name);
+    }
 
+    /**
+     * {@inheritDoc}
+     * @param string $name
+     * @param mixed  $value
+     */
+    public function __set($name, $value)
+    {
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__set', array($name, $value));
 
+        return parent::__set($name, $value);
+    }
 
 
 
@@ -64,10 +83,10 @@ class Payment extends \Core\Entity\Payment implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id');
+            return array('__isInitialized__', 'id', 'user', 'created');
         }
 
-        return array('__isInitialized__', 'id');
+        return array('__isInitialized__', 'id', 'user', 'created');
     }
 
     /**
@@ -176,6 +195,17 @@ class Payment extends \Core\Entity\Payment implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getArrayCopy()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArrayCopy', array());
+
+        return parent::getArrayCopy();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
@@ -186,6 +216,50 @@ class Payment extends \Core\Entity\Payment implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
 
         return parent::getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCreated($created)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreated', array($created));
+
+        return parent::setCreated($created);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreated()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreated', array());
+
+        return parent::getCreated();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUser(\Core\Entity\User $user = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', array($user));
+
+        return parent::setUser($user);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUser()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', array());
+
+        return parent::getUser();
     }
 
 }

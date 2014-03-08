@@ -112,4 +112,165 @@ class Rate
     }
 
 
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Rate
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return Rate
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return Rate
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set started_at
+     *
+     * @param \DateTime $startedAt
+     * @return Rate
+     */
+    public function setStartedAt($startedAt)
+    {
+        $this->started_at = $startedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get started_at
+     *
+     * @return \DateTime 
+     */
+    public function getStartedAt()
+    {
+        return $this->started_at;
+    }
+
+    /**
+     * Set ended_at
+     *
+     * @param \DateTime $endedAt
+     * @return Rate
+     */
+    public function setEndedAt($endedAt)
+    {
+        $this->ended_at = $endedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get ended_at
+     *
+     * @return \DateTime 
+     */
+    public function getEndedAt()
+    {
+        return $this->ended_at;
+    }
+
+    /**
+     * Set campaign
+     *
+     * @param \Core\Entity\Campaign $campaign
+     * @return Rate
+     */
+    public function setCampaign(\Core\Entity\Campaign $campaign = null)
+    {
+        $this->campaign = $campaign;
+
+        return $this;
+    }
+
+    /**
+     * Get campaign
+     *
+     * @return \Core\Entity\Campaign 
+     */
+    public function getCampaign()
+    {
+        return $this->campaign;
+    }
+
+    /**
+     * Set currency
+     *
+     * @param \Core\Entity\Currency $currency
+     * @return Rate
+     */
+    public function setCurrency(\Core\Entity\Currency $currency = null)
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return \Core\Entity\Currency 
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
 }

@@ -15,6 +15,27 @@ use Zend\Mvc\Controller\AbstractActionController;
 class IndexController extends AbstractActionController
 {
 
+    /**
+     * @var Doctrine\ORM\EntityManager
+     */
+    protected $em;
+
+
+    public function setEntityManager(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
+
+    public function getEntityManager() 
+    {
+        if (null === $this->em) {
+            $this->em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        }
+        return $this->em;
+    }
+
+
     public function indexAction()
     {
     	$request = $this->getRequest();
@@ -29,6 +50,10 @@ class IndexController extends AbstractActionController
 
     		if( !empty($site_id) and !empty($campaign_id) ) {
 
+                $click = new \Core\Entity\Click;
+                $this->getEntityManager()->persist($click);
+                $this->getEntityManager()->flush();
+                
     			// $campaignsite = $this->getEntityManager()->getRepository('Core\Entity\CampaignSite')->findOneBy(array('campaign_id' => $campaign_id, 'site_id' => $site_id));
 
 		    	var_dump($request->getUriString());
@@ -50,8 +75,5 @@ class IndexController extends AbstractActionController
     }
 
 
-    public function getEntityManager() 
-    {
-    	return $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-    }
+
 }

@@ -3,6 +3,7 @@
 namespace Core\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFactory;
@@ -12,6 +13,8 @@ use Zend\InputFilter\InputFilterInterface;
 /**
  * User
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\EntityListeners({"Core\Listener\UserListener"})
  * @ORM\Entity(repositoryClass="Core\Repository\UserRepository") 
  * @ORM\Table(name="user", options={"engine" = "InnoDB" })
  */
@@ -114,8 +117,9 @@ class User implements InputFilterAwareInterface
 
     public function __construct()
     {
-        $this->created_at = new \DateTime(); 
+        $this->payments = new ArrayCollection();
 
+        $this->created_at = new \DateTime(); 
         $this->status = self::STATUS_PENDING; 
     }
 

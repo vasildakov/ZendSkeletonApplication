@@ -48,6 +48,15 @@ class Currency
 
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime", nullable=true)
+     */
+    private $created;
+    
+
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="status", type="smallint", nullable=true)
@@ -57,13 +66,18 @@ class Currency
 
     public function __construct() 
     {
-        
+        $this->created = new \DateTime(); 
     }
 
     
-    public function getId() 
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
     {
-    	$this->id;
+        return $this->id;
     }
 
 
@@ -122,5 +136,51 @@ class Currency
     	$this->name;
     }
 
-}
 
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return Currency
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return Currency
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+}

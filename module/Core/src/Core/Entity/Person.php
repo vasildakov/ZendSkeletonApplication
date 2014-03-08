@@ -204,4 +204,50 @@ class Person
         return $this->email;
     }    
 
+
+    /**
+     * Set created_at
+     *
+     * @param \DateTime $createdAt
+     * @return Person
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return Person
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 }

@@ -450,4 +450,59 @@ class Campaign extends \Core\Entity\Campaign implements \Doctrine\ORM\Proxy\Prox
         return parent::addLanguage($language);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function setDescription($description)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDescription', array($description));
+
+        return parent::setDescription($description);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDescription()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDescription', array());
+
+        return parent::getDescription();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setComment($comment)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setComment', array($comment));
+
+        return parent::setComment($comment);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getComment()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getComment', array());
+
+        return parent::getComment();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeLanguage(\Core\Entity\Language $languages)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeLanguage', array($languages));
+
+        return parent::removeLanguage($languages);
+    }
+
 }

@@ -33,7 +33,7 @@ class UserSignupForm  extends Form implements InputFilterProviderInterface
             'class' => 'form-horizontal') 
         );
 
-        // username
+        // Username
         $this->add(array(
             'name' => 'username',
             'attributes' => array(
@@ -51,7 +51,7 @@ class UserSignupForm  extends Form implements InputFilterProviderInterface
         ));
 
 
-        // email
+        // Email
         $this->add(array(
             'type'    => 'email',
             'name' => 'email',
@@ -70,7 +70,7 @@ class UserSignupForm  extends Form implements InputFilterProviderInterface
         ));
 
         
-        // password 
+        // Password 
         $this->add(array(
             'type'    => 'Zend\Form\Element\Password',
             'name' => 'password',
@@ -87,7 +87,7 @@ class UserSignupForm  extends Form implements InputFilterProviderInterface
             ),
         ));
 
-        // password
+        // Password
         $this->add(array(
             'type'    => 'Zend\Form\Element\Password',
             'name' => 'password2',
@@ -142,7 +142,7 @@ class UserSignupForm  extends Form implements InputFilterProviderInterface
 
 
 
-        // country
+        // Country
         $this->add(array(
             'name' => 'country',
             'attributes' => array(
@@ -164,7 +164,7 @@ class UserSignupForm  extends Form implements InputFilterProviderInterface
         ));
 
 
-        // language
+        // Language
         $this->add(array(
             // 'type' => 'Zend\Form\Element\Select',
             'name' => 'language',
@@ -180,11 +180,17 @@ class UserSignupForm  extends Form implements InputFilterProviderInterface
                     'for' => 'Language',
                     'class'  => 'control-label'
                 ),
-                // 'value_options' => $this->getLanguages(),
-                // we don't need all the languages but only those with status 1
                 'object_manager' => $entityManager,
                 'target_class' => 'Core\Entity\Language',
                 'property' => 'name',
+                'is_method' => true,
+                'find_method' => array(
+                    'name' => 'findBy',
+                    'params' => array(
+                        'criteria' => array('status' => \Core\Entity\Language::STATUS_ACTIVE),
+                        'orderBy' => array('name' => "ASC"),
+                    ),
+                )
             )
         ));
 

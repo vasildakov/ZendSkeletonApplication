@@ -232,4 +232,92 @@ class CampaignSite extends \Core\Entity\CampaignSite implements \Doctrine\ORM\Pr
         return parent::getSite();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function setCreatedAt($createdAt)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreatedAt', array($createdAt));
+
+        return parent::setCreatedAt($createdAt);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreatedAt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreatedAt', array());
+
+        return parent::getCreatedAt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStartedAt($startedAt)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStartedAt', array($startedAt));
+
+        return parent::setStartedAt($startedAt);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStartedAt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStartedAt', array());
+
+        return parent::getStartedAt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEndedAt($endedAt)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEndedAt', array($endedAt));
+
+        return parent::setEndedAt($endedAt);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEndedAt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEndedAt', array());
+
+        return parent::getEndedAt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStatus($status)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatus', array($status));
+
+        return parent::setStatus($status);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatus()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', array());
+
+        return parent::getStatus();
+    }
+
 }

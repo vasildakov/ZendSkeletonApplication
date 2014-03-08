@@ -39,6 +39,14 @@ class Category implements InputFilterAwareInterface
 
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime", nullable=true)
+     */
+    private $created;
+
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="status", type="smallint", nullable=true)
@@ -50,7 +58,7 @@ class Category implements InputFilterAwareInterface
 
     public function __construct() 
     {
-        $this->created_at = new \DateTime(); 
+        $this->created = new \DateTime(); 
     }
 
 
@@ -183,4 +191,50 @@ class Category implements InputFilterAwareInterface
     }
 
     
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return Category
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return Category
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
 }

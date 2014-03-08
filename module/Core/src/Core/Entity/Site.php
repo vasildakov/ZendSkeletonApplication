@@ -46,9 +46,9 @@ class Site implements InputFilterAwareInterface
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * @ORM\Column(name="created", type="datetime", nullable=true)
      */
-    private $created_at;
+    private $created;
 
 
     /**
@@ -68,7 +68,7 @@ class Site implements InputFilterAwareInterface
 
     public function __construct()
     {
-        $this->created_at = new \DateTime(); 
+        $this->created = new \DateTime(); 
     }
 
 
@@ -256,27 +256,27 @@ class Site implements InputFilterAwareInterface
 
 
 
-
     /**
-     * Set created_at
+     * Set created
      *
-     * @param \DateTime $created_at
-     * @return User
+     * @param \DateTime $created
+     * @return Site
      */
-    public function setCreatedAt($created_at)
+    public function setCreated($created)
     {
-        $this->created_at = $created_at;
+        $this->created = $created;
+
         return $this;
     }
 
-
     /**
-     * Get created_at
+     * Get created
      *
      * @return \DateTime 
      */
-    public function getCreatedAt()
+    public function getCreated()
     {
-        return $this->created_at->format('Y-m-d');
+        // return $this->created;
+        return $this->created->format("Y-m-d");
     }
 }

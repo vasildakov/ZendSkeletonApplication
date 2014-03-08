@@ -173,4 +173,63 @@ class SiteLanguage extends \Core\Entity\SiteLanguage implements \Doctrine\ORM\Pr
     }
 
     
+    /**
+     * {@inheritDoc}
+     */
+    public function getId()
+    {
+        if ($this->__isInitialized__ === false) {
+            return (int)  parent::getId();
+        }
+
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
+
+        return parent::getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSite(\Core\Entity\Site $site = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSite', array($site));
+
+        return parent::setSite($site);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSite()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSite', array());
+
+        return parent::getSite();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setLanguage(\Core\Entity\Language $language = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLanguage', array($language));
+
+        return parent::setLanguage($language);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLanguage()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLanguage', array());
+
+        return parent::getLanguage();
+    }
+
 }

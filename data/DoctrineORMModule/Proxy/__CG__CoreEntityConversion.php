@@ -188,4 +188,158 @@ class Conversion extends \Core\Entity\Conversion implements \Doctrine\ORM\Proxy\
         return parent::getId();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function setSiteId($site_id)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSiteId', array($site_id));
+
+        return parent::setSiteId($site_id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCampaignId($campaign_id)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCampaignId', array($campaign_id));
+
+        return parent::setCampaignId($campaign_id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setReference($reference)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setReference', array($reference));
+
+        return parent::setReference($reference);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getReference()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getReference', array());
+
+        return parent::getReference();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUserId($userId)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUserId', array($userId));
+
+        return parent::setUserId($userId);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUserId()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUserId', array());
+
+        return parent::getUserId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCampaignId()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCampaignId', array());
+
+        return parent::getCampaignId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSiteId()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSiteId', array());
+
+        return parent::getSiteId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setRateId($rateId)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setRateId', array($rateId));
+
+        return parent::setRateId($rateId);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRateId()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRateId', array());
+
+        return parent::getRateId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setType($type)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setType', array($type));
+
+        return parent::setType($type);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getType()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getType', array());
+
+        return parent::getType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStatus($status)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatus', array($status));
+
+        return parent::setStatus($status);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatus()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', array());
+
+        return parent::getStatus();
+    }
+
 }

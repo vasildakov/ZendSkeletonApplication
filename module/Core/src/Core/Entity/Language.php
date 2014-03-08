@@ -17,7 +17,7 @@ class Language
 
     public $statusOptions = array(
                     self::STATUS_PENDING    => "Pending",
-                    self::STATUS_ACTIVE  => "Active"
+                    self::STATUS_ACTIVE     => "Active"
                 );
 
     /**
@@ -57,9 +57,9 @@ class Language
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * @ORM\Column(name="created", type="datetime", nullable=true)
      */
-    private $created_at;
+    private $created;
 
 
     /**
@@ -73,7 +73,7 @@ class Language
 
     public function __construct()
     {
-        $this->created_at = new \DateTime(); 
+        $this->created = new \DateTime(); 
     }
 
 
@@ -160,14 +160,14 @@ class Language
 
 
     /**
-     * Set created_at
+     * Set created
      *
-     * @param \DateTime $created_at
+     * @param \DateTime $created
      * @return Language
      */
-    public function setCreatedAt($created_at)
+    public function setCreated($created)
     {
-        $this->created_at = $created_at;
+        $this->created = $created;
         return $this;
     }
 
@@ -177,9 +177,9 @@ class Language
      *
      * @return \DateTime 
      */
-    public function getCreatedAt()
+    public function getCreated()
     {
-        return $this->created_at->format("Y-m-d");
+        return $this->created->format("Y-m-d");
     }
 
 

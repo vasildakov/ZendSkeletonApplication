@@ -90,6 +90,7 @@ class Conversion
     }
 
 
+
     /**
      * Get id
      *
@@ -100,4 +101,156 @@ class Conversion
         return $this->id;
     }
 
+
+
+    public function setSiteId($site_id) 
+    {
+        $this->site_id = $site_id;
+        return $this;
+    }
+
+
+    public function setCampaignId($campaign_id) 
+    {
+        $this->campaign_id = $campaign_id;
+        return $this;
+    }
+
+
+
+    /**
+     * Set reference
+     *
+     * @param string $reference
+     * @return Conversion
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+
+    /**
+     * Get reference
+     *
+     * @return string 
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+    /**
+     * Set user_id
+     *
+     * @param integer $userId
+     * @return Conversion
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get user_id
+     *
+     * @return integer 
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * Get campaign_id
+     *
+     * @return integer 
+     */
+    public function getCampaignId()
+    {
+        return $this->campaign_id;
+    }
+
+    /**
+     * Get site_id
+     *
+     * @return integer 
+     */
+    public function getSiteId()
+    {
+        return $this->site_id;
+    }
+
+    /**
+     * Set rate_id
+     *
+     * @param integer $rateId
+     * @return Conversion
+     */
+    public function setRateId($rateId)
+    {
+        $this->rate_id = $rateId;
+
+        return $this;
+    }
+
+    /**
+     * Get rate_id
+     *
+     * @return integer 
+     */
+    public function getRateId()
+    {
+        return $this->rate_id;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return Conversion
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return Conversion
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 }

@@ -83,10 +83,10 @@ class Site extends \Core\Entity\Site implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'url', 'status', 'created_at', 'statusOptions', 'inputFilter');
+            return array('__isInitialized__', 'id', 'url', 'status', 'created', 'statusOptions', 'inputFilter');
         }
 
-        return array('__isInitialized__', 'id', 'url', 'status', 'created_at', 'statusOptions', 'inputFilter');
+        return array('__isInitialized__', 'id', 'url', 'status', 'created', 'statusOptions', 'inputFilter');
     }
 
     /**
@@ -310,23 +310,23 @@ class Site extends \Core\Entity\Site implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setCreatedAt($created_at)
+    public function setCreated($created)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreatedAt', array($created_at));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreated', array($created));
 
-        return parent::setCreatedAt($created_at);
+        return parent::setCreated($created);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getCreatedAt()
+    public function getCreated()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreatedAt', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreated', array());
 
-        return parent::getCreatedAt();
+        return parent::getCreated();
     }
 
 }

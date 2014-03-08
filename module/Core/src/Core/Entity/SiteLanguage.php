@@ -50,4 +50,60 @@ class SiteLanguage
         
     }
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set site
+     *
+     * @param \Core\Entity\Site $site
+     * @return SiteLanguage
+     */
+    public function setSite(\Core\Entity\Site $site = null)
+    {
+        $this->site = $site;
+
+        return $this;
+    }
+
+    /**
+     * Get site
+     *
+     * @return \Core\Entity\Site 
+     */
+    public function getSite()
+    {
+        return $this->site;
+    }
+
+    /**
+     * Set language
+     *
+     * @param \Core\Entity\Language $language
+     * @return SiteLanguage
+     */
+    public function setLanguage(\Core\Entity\Language $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return \Core\Entity\Language 
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
 }

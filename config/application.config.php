@@ -6,6 +6,7 @@ return array(
         'Authentication',
         'Backoffice',
         'Core',
+        'Api',
         'Tracker',
         'DoctrineModule',
         'DoctrineORMModule',

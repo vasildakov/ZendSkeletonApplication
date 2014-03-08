@@ -64,10 +64,10 @@ class Currency extends \Core\Entity\Currency implements \Doctrine\ORM\Proxy\Prox
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'cc', 'symbol', 'name', 'status');
+            return array('__isInitialized__', 'id', 'cc', 'symbol', 'name', 'created', 'status');
         }
 
-        return array('__isInitialized__', 'id', 'cc', 'symbol', 'name', 'status');
+        return array('__isInitialized__', 'id', 'cc', 'symbol', 'name', 'created', 'status');
     }
 
     /**
@@ -178,6 +178,10 @@ class Currency extends \Core\Entity\Currency implements \Doctrine\ORM\Proxy\Prox
      */
     public function getId()
     {
+        if ($this->__isInitialized__ === false) {
+            return (int)  parent::getId();
+        }
+
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
 
@@ -248,6 +252,50 @@ class Currency extends \Core\Entity\Currency implements \Doctrine\ORM\Proxy\Prox
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', array());
 
         return parent::getName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStatus($status)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatus', array($status));
+
+        return parent::setStatus($status);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatus()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', array());
+
+        return parent::getStatus();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCreated($created)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCreated', array($created));
+
+        return parent::setCreated($created);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreated()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreated', array());
+
+        return parent::getCreated();
     }
 
 }

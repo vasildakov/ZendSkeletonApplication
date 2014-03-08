@@ -23,8 +23,8 @@ class CampaignForm extends Form
         $tomorrow = clone $today;
         $tomorrow->modify('+1 day');
 
-        $this->setHydrator(new DoctrineHydrator($entityManager));
-
+        $this->setHydrator(new DoctrineHydrator($entityManager, 'Core\Entity\Campaign'));
+        
         $this->setAttributes( array(
             'role' => 'form', 
             'method' => 'post', 

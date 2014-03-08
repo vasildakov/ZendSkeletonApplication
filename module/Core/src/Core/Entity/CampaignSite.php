@@ -145,4 +145,96 @@ class CampaignSite
         return $this->site;
     }
 
+
+    /**
+     * Set created_at
+     *
+     * @param \DateTime $createdAt
+     * @return CampaignSite
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set started_at
+     *
+     * @param \DateTime $startedAt
+     * @return CampaignSite
+     */
+    public function setStartedAt($startedAt)
+    {
+        $this->started_at = $startedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get started_at
+     *
+     * @return \DateTime 
+     */
+    public function getStartedAt()
+    {
+        return $this->started_at;
+    }
+
+    /**
+     * Set ended_at
+     *
+     * @param \DateTime $endedAt
+     * @return CampaignSite
+     */
+    public function setEndedAt($endedAt)
+    {
+        $this->ended_at = $endedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get ended_at
+     *
+     * @return \DateTime 
+     */
+    public function getEndedAt()
+    {
+        return $this->ended_at;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return CampaignSite
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 }

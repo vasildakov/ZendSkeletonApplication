@@ -167,7 +167,7 @@ class Campaign implements InputFilterAwareInterface
         $this->name         = (isset($data['name']))        ? $data['name']         : null;
         $this->started_at   = (isset($data['started_at']))  ? $data['started_at']   : null;
         $this->ended_at     = (isset($data['ended_at']))    ? $data['ended_at']     : null;
-        $this->operator     = (isset($data['operator']))    ? $data['operator']     : null;
+        // $this->operator     = (isset($data['operator']))    ? $data['operator']     : null;
         
     }
 
@@ -186,9 +186,10 @@ class Campaign implements InputFilterAwareInterface
 
             $factory = new InputFactory();
 
+            
             $inputFilter->add($factory->createInput(array(
                 'name' => 'id',
-                'required' => true,
+                'required' => false,
                 'filters' => array(
                     array('name' => 'Int'),
                 ),
@@ -212,6 +213,8 @@ class Campaign implements InputFilterAwareInterface
                     ),
                 ),
             )));
+
+
 
             // @TODO: Add input filters for the other field
 
@@ -312,8 +315,8 @@ class Campaign implements InputFilterAwareInterface
      */
     public function getStartedAt()
     {
-        // return $this->created_at;
-        return $this->started_at->format('Y-m-d');
+        return $this->started_at;
+        // return $this->started_at->format('Y-m-d');
     }
 
 
@@ -451,4 +454,60 @@ class Campaign implements InputFilterAwareInterface
     }
 
 
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Campaign
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     * @return Campaign
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string 
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Remove languages
+     *
+     * @param \Core\Entity\Language $languages
+     */
+    public function removeLanguage(\Core\Entity\Language $languages)
+    {
+        $this->languages->removeElement($languages);
+    }
 }

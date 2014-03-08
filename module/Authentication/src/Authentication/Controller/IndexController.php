@@ -161,6 +161,19 @@ class IndexController extends AbstractActionController
 
                 $this->getEntityManager()->persist($user);
                 $this->getEntityManager()->flush();
+
+
+                /* $mail = new \Zend\Mail\Message();  
+                $mail->setEncoding("UTF-8");
+                $mail->setBody("test message");
+                $mail->setFrom('app@app.com','Sender Name');  
+                $mail->addTo( "vasildakov@gmail.com" );  
+                $mail->setSubject('Your Subject');  
+
+                $transport = new \Zend\Mail\Transport\Sendmail();
+                $transport->send($mail);*/
+
+
                 return $this->redirect()->toRoute('backoffice/user'); 
 
                 // var_dump( $request->getPost() );

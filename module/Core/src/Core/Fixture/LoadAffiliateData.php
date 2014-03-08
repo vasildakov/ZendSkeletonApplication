@@ -47,15 +47,6 @@ class LoadAffiliateData implements OrderedFixtureInterface, FixtureInterface
     public function getMockAffiliates() 
     {
         return  array(
-                /* 
-                array('username' => 'aiken',     'name' => 'Aiken',    'email' => "aiken@gmail.com"),
-                array('username' => 'albert',    'name' => 'Albert',   'email' => "albert@gmail.com"), 
-                array('username' => 'alfred',    'name' => 'Alfred',   'email' => "alfred@gmail.com"),
-                array('username' => 'baldwin',   'name' => 'Baldwin',  'email' => "baldwin@gmail.com"),
-                array('username' => 'barrett',   'name' => 'Barrett',  'email' => "barrett@gmail.com"),
-                array('username' => 'barry',     'name' => 'Barry',    'email' => "barry@gmail.com"), 
-                */
-
                 array(
                     'username' => 'TheRing',     
                     'name' => 'Alan', 

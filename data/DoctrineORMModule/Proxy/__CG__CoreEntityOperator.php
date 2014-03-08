@@ -239,4 +239,19 @@ class Operator extends \Core\Entity\Operator implements \Doctrine\ORM\Proxy\Prox
         return parent::getCreatedAt();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getId()
+    {
+        if ($this->__isInitialized__ === false) {
+            return (int)  parent::getId();
+        }
+
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
+
+        return parent::getId();
+    }
+
 }

@@ -188,4 +188,158 @@ class Rate extends \Core\Entity\Rate implements \Doctrine\ORM\Proxy\Proxy
         return parent::getId();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function setName($name)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setName', array($name));
+
+        return parent::setName($name);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getName()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getName', array());
+
+        return parent::getName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStatus($status)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatus', array($status));
+
+        return parent::setStatus($status);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatus()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', array());
+
+        return parent::getStatus();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setType($type)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setType', array($type));
+
+        return parent::setType($type);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getType()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getType', array());
+
+        return parent::getType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setStartedAt($startedAt)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStartedAt', array($startedAt));
+
+        return parent::setStartedAt($startedAt);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStartedAt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStartedAt', array());
+
+        return parent::getStartedAt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEndedAt($endedAt)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEndedAt', array($endedAt));
+
+        return parent::setEndedAt($endedAt);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEndedAt()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEndedAt', array());
+
+        return parent::getEndedAt();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCampaign(\Core\Entity\Campaign $campaign = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCampaign', array($campaign));
+
+        return parent::setCampaign($campaign);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCampaign()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCampaign', array());
+
+        return parent::getCampaign();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCurrency(\Core\Entity\Currency $currency = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCurrency', array($currency));
+
+        return parent::setCurrency($currency);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCurrency()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCurrency', array());
+
+        return parent::getCurrency();
+    }
+
 }
