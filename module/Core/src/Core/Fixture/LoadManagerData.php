@@ -28,14 +28,17 @@ class LoadManagerData implements OrderedFixtureInterface, FixtureInterface
     	foreach($managers as $row) 
     	{
             $role = $objectManager->find('\Core\Entity\Role', 5);
-
+            $language = $objectManager->find('\Core\Entity\Language', 40);
+            
 		    $manager = new \Core\Entity\User();
             $manager->setName($row['name']);
             $manager->setSurname($row['surname']);
 		    $manager->setUsername($row['username']);
             $manager->setPassword(123456);
 		    $manager->setEmail($row['email']);
+
 		    $manager->setRole( $role );
+            $manager->setLanguage( $language );
 
 		    $objectManager->persist($manager);
 		    $objectManager->flush();

@@ -27,6 +27,7 @@ class LoadAffiliateData implements OrderedFixtureInterface, FixtureInterface
     	{
 
             $role = $objectManager->find('\Core\Entity\Role', 6);
+            $language = $objectManager->find('\Core\Entity\Language', 40);
 
 		    $affiliate = new \Core\Entity\User();
 		    $affiliate->setUsername($row['username']);
@@ -36,6 +37,7 @@ class LoadAffiliateData implements OrderedFixtureInterface, FixtureInterface
 		    $affiliate->setEmail( strtolower($row['email']) );
 
 		    $affiliate->setRole( $role );
+            $affiliate->setLanguage( $language );
 
 		    $objectManager->persist($affiliate);
 		    $objectManager->flush();
@@ -56,50 +58,50 @@ class LoadAffiliateData implements OrderedFixtureInterface, FixtureInterface
                 array(
                     'username' => 'Frodo',     
                     'name' => 'Elijah',
-                    'surname' => ' Wood',    
+                    'surname' => 'Wood',    
                     'email' => "Frodo@gmail.com"
                 ),
                 array(
                     'username' => 'Proudfoot',     
                     'name' => 'Noel',
-                    'surname' => ' Appleby',    
+                    'surname' => 'Appleby',    
                     'email' => "Frodo@gmail.com"
                 ),
                 array(
                     'username' => 'Samwise',     
                     'name' => 'Sean', 
-                    'surname' => ' Astin',    
+                    'surname' => 'Astin',    
                     'email' => "Samwise@gmail.com"
                     ),
 
                 array(
                     'username' => 'Sauron',     
                     'name' => 'Sala', 
-                    'surname' => ' Baker',    
+                    'surname' => 'Baker',    
                     'email' => "Sauron@gmail.com"
                     ),
                 array(
                     'username' => 'Boromir',     
                     'name' => 'Sean', 
-                    'surname' => ' Bean',    
+                    'surname' => 'Bean',    
                     'email' => "Boromir@gmail.com"
                     ),
                 array(
                     'username' => 'Galadriel',     
                     'name' => 'Cate', 
-                    'surname' => ' Blanchett',    
+                    'surname' => 'Blanchett',    
                     'email' => "Galadriel@gmail.com"
                     ),
                 array(
                     'username' => 'Legolas',     
                     'name' => 'Orlando', 
-                    'surname' => ' Bloom',    
+                    'surname' => 'Bloom',    
                     'email' => "Legolas@gmail.com"
                     ),
                 array(
                     'username' => 'Pippin',     
                     'name' => 'Billy', 
-                    'surname' => ' Boyd',    
+                    'surname' => 'Boyd',    
                     'email' => "Pippin@gmail.com"
                     ),
 
@@ -112,118 +114,118 @@ class LoadAffiliateData implements OrderedFixtureInterface, FixtureInterface
                 array(
                     'username' => 'MrsProudfoot',     
                     'name' => 'Megan', 
-                    'surname' => ' Edwards',    
+                    'surname' => 'Edwards',    
                     'email' => "barry@gmail.com"
                     ),
                 array(
                     'username' => 'GondorianArch',     
                     'name' => 'Michael', 
-                    'surname' => ' Elsworth',    
+                    'surname' => 'Elsworth',    
                     'email' => "GondorianArch@gmail.com"
                     ),
                 array(
                     'username' => 'GilGalad',     
                     'name' => 'Mark', 
-                    'surname' => ' Ferguson',    
+                    'surname' => 'Ferguson',    
                     'email' => "GilGalad@gmail.com"
                     ),
                 array(
                     'username' => 'BilboBaggins',     
                     'name' => 'Ian', 
-                    'surname' => ' Holm',    
+                    'surname' => 'Holm',    
                     'email' => "BilboBaggins@gmail.com"
                     ),
                 array(
                     'username' => 'Saruman',     
                     'name' => 'Christopher', 
-                    'surname' => ' Lee',    
+                    'surname' => 'Lee',    
                     'email' => "Saruman@gmail.com"),
 
                 array(
                     'username' => 'Lurtz',     
                     'name' => 'Lawrence', 
-                    'surname' => ' Makoare',    
+                    'surname' => 'Makoare',    
                     'email' => "Lurtz@gmail.com"
                     ),
                 array(
                     'username' => 'Gollum',     
                     'name' => 'Andy', 
-                    'surname' => ' Serkis',    
+                    'surname' => 'Serkis',    
                     'email' => "Gollum@gmail.com"),
                 array(
                     'username' => 'WitchKing',     
                     'name' => 'Brent', 
-                    'surname' => ' McIntyre',    
+                    'surname' => 'McIntyre',    
                     'email' => "WitchKing@gmail.com"),
                 array(
                     'username' => 'GandalfTheGrey',     
                     'name' => 'Ian', 
-                    'surname' => ' McKellen',    
+                    'surname' => 'McKellen',    
                     'email' => "GandalfTheGrey@gmail.com"),
                 array(
                     'username' => 'Elendil',     
                     'name' => 'Peter', 
-                    'surname' => ' McKenzie',    
+                    'surname' => 'McKenzie',    
                     'email' => "Elendil@gmail.com"),
                 array(
                     'username' => 'RoseCotton',     
                     'name' => 'Sarah', 
-                    'surname' => ' McLeod',    
+                    'surname' => 'McLeod',    
                     'email' => "RoseCotton@gmail.com"),
                 array(
                     'username' => 'MeriadocBrandybuck',     
                     'name' => 'Dominic', 
-                    'surname' => ' Monaghan',    
+                    'surname' => 'Monaghan',    
                     'email' => "MeriadocBrandybuck@gmail.com"),
                 array(
                     'username' => 'Aragorn',     
                     'name' => 'Viggo', 
-                    'surname' => ' Mortensen',    
+                    'surname' => 'Mortensen',    
                     'email' => "Aragorn@gmail.com"),
                 array(
                     'username' => 'Bounder',     
                     'name' => 'Ian', 
-                    'surname' => ' Mune',    
+                    'surname' => 'Mune',    
                     'email' => "Bounder@gmail.com"),
                 array(
                     'username' => 'Haldir',     
                     'name' => 'Craig', 
-                    'surname' => ' Parker',    
+                    'surname' => 'Parker',    
                     'email' => "Haldir@gmail.com"),
                 array(
                     'username' => 'FarmerMaggot',     
                     'name' => 'Cameron', 
-                    'surname' => ' Rhodes',    
+                    'surname' => 'Rhodes',    
                     'email' => "FarmerMaggot@gmail.com"),
                 array(
                     'username' => 'Gimli',     
                     'name' => 'John', 
-                    'surname' => ' Rhys-Davies',    
+                    'surname' => 'Rhys-Davies',    
                     'email' => "Gimli@gmail.com"),
                 array(
                     'username' => 'GateKeeper',     
                     'name' => 'Martyn', 
-                    'surname' => ' Sanderson',    
+                    'surname' => 'Sanderson',    
                     'email' => "GateKeeper@gmail.com"),
                 array(
                     'username' => 'Isildur',     
                     'name' => 'Harry', 
-                    'surname' => ' Sinclair',    
+                    'surname' => 'Sinclair',    
                     'email' => "Isildur@gmail.com"),
                 array(
                     'username' => 'Arwen',     
                     'name' => 'Liv', 
-                    'surname' => ' Tyler',    
+                    'surname' => 'Tyler',    
                     'email' => "Arwen@gmail.com"),
                 array(
                     'username' => 'Barliman',     
                     'name' => 'David',
-                    'surname' => ' Weatherley',    
+                    'surname' => 'Weatherley',    
                     'email' => "Barliman@gmail.com"),
                 array(
                     'username' => 'Elrond',     
                     'name' => 'Hugo', 
-                    'surname' => ' Weaving',    
+                    'surname' => 'Weaving',    
                     'email' => "Elrond@gmail.com"),
             );        
     }

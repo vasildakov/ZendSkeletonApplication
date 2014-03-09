@@ -8,6 +8,7 @@
 namespace Core\Form;
 
 use DoctrineModule\Validator\NoObjectExists as NoObjectExistsValidator;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\ServiceManager\ServiceManager;
@@ -25,7 +26,7 @@ class UserSignupForm  extends Form implements InputFilterProviderInterface
 
         parent::__construct('user');
 
-        // $this->setHydrator(new DoctrineHydrator($objectManager));
+        $this->setHydrator(new DoctrineHydrator($entityManager, 'Core\Entity\User'));
         
         $this->setAttributes(array(
             'role' => 'form', 
@@ -166,7 +167,6 @@ class UserSignupForm  extends Form implements InputFilterProviderInterface
 
         // Language
         $this->add(array(
-            // 'type' => 'Zend\Form\Element\Select',
             'name' => 'language',
             'attributes' => array(
                 'type'  => 'select',
@@ -257,6 +257,26 @@ class UserSignupForm  extends Form implements InputFilterProviderInterface
             			)
             		),
             	)
+            ),
+            'name' => array(
+                'validators' => array(
+                    array(
+                        'name' => 'Zend\Validator\NotEmpty',
+                        'options' =>  array(
+                            'messages' => array()
+                        )
+                    ),
+                )
+            ),
+            'surname' => array(
+                'validators' => array(
+                    array(
+                        'name' => 'Zend\Validator\NotEmpty',
+                        'options' =>  array(
+                            'messages' => array()
+                        )
+                    ),
+                )
             ),
             'password' => array(
             	'validators' => array(

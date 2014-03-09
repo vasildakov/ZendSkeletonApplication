@@ -72,6 +72,13 @@ class Module {
                 'Zend\Authentication\AuthenticationService' => function($serviceManager) {
                     return $serviceManager->get('doctrine.authenticationservice.orm_default');  
                 },
+                'logger' => function() {
+                    $logger = new \Zend\Log\Logger();
+                    $logger->addWriter(new \Zend\Log\Writer\Stream(
+                        getcwd(). '/data/application.log'
+                    ));
+                    return $logger;
+                },
             ),
             'invokables' => array(
                 'loggingService'    => 'Core\Service\LoggingService',

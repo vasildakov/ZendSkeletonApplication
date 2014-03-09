@@ -83,10 +83,10 @@ class User extends \Core\Entity\User implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'statusOptions', 'inputFilter', 'id', 'username', 'password', 'name', 'surname', 'email', 'created_at', 'updated_at', 'status', 'role');
+            return array('__isInitialized__', 'statusOptions', 'inputFilter', 'id', 'username', 'password', 'name', 'surname', 'email', 'created_at', 'updated_at', 'status', 'role', 'language');
         }
 
-        return array('__isInitialized__', 'statusOptions', 'inputFilter', 'id', 'username', 'password', 'name', 'surname', 'email', 'created_at', 'updated_at', 'status', 'role');
+        return array('__isInitialized__', 'statusOptions', 'inputFilter', 'id', 'username', 'password', 'name', 'surname', 'email', 'created_at', 'updated_at', 'status', 'role', 'language');
     }
 
     /**
@@ -448,6 +448,28 @@ class User extends \Core\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRole', array());
 
         return parent::getRole();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setLanguage(\Core\Entity\Language $language = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLanguage', array($language));
+
+        return parent::setLanguage($language);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLanguage()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLanguage', array());
+
+        return parent::getLanguage();
     }
 
 }

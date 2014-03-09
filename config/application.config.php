@@ -8,6 +8,7 @@ return array(
         'Core',
         'Api',
         'Tracker',
+        'Soap',
         'DoctrineModule',
         'DoctrineORMModule',
         'DoctrineDataFixtureModule',

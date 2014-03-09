@@ -114,6 +114,17 @@ class User implements InputFilterAwareInterface
     private $role;
 
 
+    /**
+     * @var \Core\Entity\Language
+     *
+     * @ORM\ManyToOne(targetEntity="Core\Entity\Language")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="language", referencedColumnName="id")
+     * })
+     */
+    private $language;
+
+
 
     public function __construct()
     {
@@ -166,13 +177,17 @@ class User implements InputFilterAwareInterface
      */
     public function populate($data = array())
     {
-        $this->id       = $data['id'];
-        $this->name     = $data['name'];
-        $this->surname  = $data['surname'];
-        $this->username = $data['username'];
-        $this->email    = $data['email'];
-        #$this->password = $data['password'];
-        $this->role     = $data['role'];
+        // http://devblog.x2k.co.uk/using-the-composedobject-zend-framework-2-form-annotation/
+
+        $this->id        = (isset($data['id']))       ? $data['id']       : null;
+        $this->name      = (isset($data['name']))     ? $data['name']     : null;
+        $this->surname   = (isset($data['surname']))  ? $data['surname']  : null;
+        $this->username  = (isset($data['username'])) ? $data['username'] : null;
+        $this->email     = (isset($data['email']))    ? $data['email']    : null;
+        // $this->country   = (isset($data['country']))  ? $data['country'] : null;
+        $this->language  = (isset($data['language'])) ? $data['language'] : null;
+        $this->password  = (isset($data['password'])) ? $data['password'] : null; 
+        // $this->role      = (isset($data['role']))     ? $data['role']  : null;
         
     }
 
@@ -194,7 +209,7 @@ class User implements InputFilterAwareInterface
 
             $inputFilter->add($factory->createInput(array(
                 'name' => 'id',
-                'required' => true,
+                'required' => false,
                 'filters' => array(
                     array('name' => 'Int'),
                 ),
@@ -483,4 +498,27 @@ class User implements InputFilterAwareInterface
     }
 
  
+
+    /**
+     * Set language
+     *
+     * @param \Core\Entity\Language $language
+     * @return User
+     */
+    public function setLanguage(\Core\Entity\Language $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return \Core\Entity\Language 
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
 }
