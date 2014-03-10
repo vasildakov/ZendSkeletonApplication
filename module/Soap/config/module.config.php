@@ -14,7 +14,8 @@ return array(
             'soap' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/soap/index[/:action][/:id]',
+                    // 'route'    => '/soap/index[/:action][/:id]',
+                    'route'    => '/soap',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
