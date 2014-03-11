@@ -1,5 +1,11 @@
-<?php
-// Core/Repository/UserRepository.php
+<?php // Core/Repository/UserRepository.php
+/**
+ * http://mackstar.com/blog/2010/10/04/using-repositories-doctrine-2
+ * http://stackoverflow.com/questions/9214471/count-rows-in-doctrine-querybuilder
+ * http://www.wjgilmore.com/blog/entry/the_power_of_doctrine_2s_custom_repositories_and_native_queries
+ * http://weavora.com/blog/2013/08/23/how-we-organize-doctrine2-repositories/
+ */
+
 namespace Core\Repository;
 
 use Doctrine\ORM\EntityRepository;
