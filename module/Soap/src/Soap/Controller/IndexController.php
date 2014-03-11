@@ -1,4 +1,7 @@
 <?php
+/**
+ * http://framework.zend.com/manual/2.0/en/modules/zend.soap.auto-discovery.html
+ */
 
 namespace Soap\Controller;
 
@@ -51,9 +54,6 @@ class IndexController extends AbstractActionController
         }
 
     }
-
-
-
 
 
 

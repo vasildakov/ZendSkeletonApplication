@@ -16,6 +16,8 @@ use Zend\Session\Container;
 use Zend\Session\Storage\SessionStorage;
 use Zend\Session\SessionManager;
 
+use Zend\Http\Response;
+
 class IndexController extends AbstractActionController
 {
 
@@ -54,6 +56,11 @@ class IndexController extends AbstractActionController
      */
     public function indexAction()
     {
+        #$response = $this->getResponse();
+        #$response->setStatusCode(Response::STATUS_CODE_200);
+        #$response->getHeaders()->addHeaders(array());
+        #return $response;
+
     	return $this->redirect()->toRoute('login');
     }
 

@@ -70,7 +70,7 @@ class Module {
             'aliases' => array(),
             'factories' => array(
                 'Zend\Authentication\AuthenticationService' => function($serviceManager) {
-                    return $serviceManager->get('doctrine.authenticationservice.orm_default');  
+                    return $serviceManager->get('doctrine.authenticationservice.orm_default'); 
                 },
                 'logger' => function() {
                     $logger = new \Zend\Log\Logger();
