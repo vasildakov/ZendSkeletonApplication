@@ -529,4 +529,3 @@ class User implements InputFilterAwareInterface
         return ($this->status == self::STATUS_VALIDATED) ? true: false;
     }
 
-}
