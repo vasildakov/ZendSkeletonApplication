@@ -521,4 +521,10 @@ class User implements InputFilterAwareInterface
     {
         return $this->language;
     }
+
+
+    public function isActive() 
+    {
+        return ($this->status == 1) ? true : false;
+    }
 }
