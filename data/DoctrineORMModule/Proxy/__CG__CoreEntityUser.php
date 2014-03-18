@@ -472,4 +472,15 @@ class User extends \Core\Entity\User implements \Doctrine\ORM\Proxy\Proxy
         return parent::getLanguage();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function isActive()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'isActive', array());
+
+        return parent::isActive();
+    }
+
 }

@@ -170,6 +170,7 @@ class User implements InputFilterAwareInterface
     }
 
 
+
     /**
      * Populate from an array.
      *
@@ -521,4 +522,11 @@ class User implements InputFilterAwareInterface
     {
         return $this->language;
     }
+
+
+    public function isActive() 
+    {
+        return ($this->status == self::STATUS_VALIDATED) ? true: false;
+    }
+
 }
