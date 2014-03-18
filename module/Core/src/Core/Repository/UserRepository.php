@@ -12,23 +12,9 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 
-class UserRepository extends EntityRepository {
+class UserRepository extends EntityRepository 
+{
     
-
-    public function getTest() 
-    {
-
-        $qb = $this->_em->createQueryBuilder();
-        $qb->select('u');
-        $qb->from('Core\Entity\User', 'u');
-        $qb->orderBy('u.id');
-        $qb->setFirstResult( $offset );
-        $qb->setMaxResults( $limit );
-        
-        return $qb->getQuery()->getResult();
-    }
-
-
     /**
      * Returns Doctrine Query Object
      * 
@@ -67,6 +53,101 @@ class UserRepository extends EntityRepository {
 
 
     /**
+     * Returns last registered users
+     * 
+     * @param int $limit
+     */
+    public function findRecent($limit = 5) 
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u');
+        $qb->from('Core\Entity\User', 'u');
+
+        $qb->where('u.status = :status');
+        $qb->setParameter('status', \Core\Entity\User::STATUS_VALIDATED);
+
+        $qb->orderBy('u.created_at', 'DESC');
+        $qb->setMaxResults($limit);
+        $result = $qb->getQuery()->getResult();
+
+        // return new \Doctrine\Common\Collections\ArrayCollection($result);
+        return $result;
+    }
+
+
+
+    /**
+     * Returns collection by role
+     * 
+     * @param \Core\Entity\Role $role
+     */
+    public function findByRole(\Core\Entity\Role $role) 
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u');
+        $qb->from('Core\Entity\User', 'u');
+
+        $qb->where('u.role = :role');
+        $qb->setParameter('role', $role);
+
+        $qb->orderBy('u.id', 'DESC');
+        // $qb->setMaxResults($limit);
+
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
+    }
+
+    /**
+     * @param \Core\Entity\Language $language
+     */
+    public function countByLanguage(\Core\Entity\Language $language) 
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u');
+        $qb->from('Core\Entity\User', 'u');
+
+        $qb->where('u.language = :language');
+        $qb->setParameter('language', $language);
+    }  
+
+
+    /**
+     * @param \Core\Entity\Country $country
+     */
+    public function countByCountry(\Core\Entity\Country $country) 
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u');
+        $qb->from('Core\Entity\User', 'u');
+
+        $qb->where('u.country = :country');
+        $qb->setParameter('country', $country);
+    } 
+
+
+    /**
+     * @param int $status
+     */
+    public function countByStatus($status) 
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u');
+        $qb->from('Core\Entity\User', 'u');
+
+        $qb->where('u.status = :status');
+        $qb->setParameter('status', $status);
+    }
+
+      
+    /**
+     * @param int $gender
+     */
+    public function countByGender($gender) {}
+
+
+
+    /**
      * Just a test
      */
     public function findAll() 
@@ -83,6 +164,7 @@ class UserRepository extends EntityRepository {
 
     /**
      * Just a test
+     * @param int $id
      */
     public function findById($id) 
     {
@@ -90,9 +172,23 @@ class UserRepository extends EntityRepository {
     }
 
 
+    public function getTest() 
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u');
+        $qb->from('Core\Entity\User', 'u');
+        $qb->orderBy('u.id');
+        $qb->setFirstResult( $offset );
+        $qb->setMaxResults( $limit );
+        
+        return $qb->getQuery()->getResult();
+    }
+
     
     /**
      * Just a test
+     * @param int $offset
+     * @param int $limit
      */
     public function getPaginator($offset, $limit)
     {

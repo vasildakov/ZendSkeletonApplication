@@ -33,6 +33,7 @@ class LoadAffiliateData implements OrderedFixtureInterface, FixtureInterface
 		    $affiliate->setUsername($row['username']);
             $affiliate->setPassword(123456);
             $affiliate->setName($row['name']);
+            $affiliate->setStatus(1);
             $affiliate->setSurname($row['surname']);
 		    $affiliate->setEmail( strtolower($row['email']) );
 

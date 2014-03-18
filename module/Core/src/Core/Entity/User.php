@@ -526,6 +526,7 @@ class User implements InputFilterAwareInterface
 
     public function isActive() 
     {
-        return ($this->status == self::STATUS_VALIDATED) ? true: false;
+        return ($this->status == self::STATUS_VALIDATED) ? TRUE: FALSE;
     }
 
+}
