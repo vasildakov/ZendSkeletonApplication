@@ -18,7 +18,7 @@ use Zend\InputFilter\InputFilterInterface;
  * @ORM\Entity(repositoryClass="Core\Repository\UserRepository") 
  * @ORM\Table(name="user", options={"engine" = "InnoDB" })
  */
-class User implements InputFilterAwareInterface
+class User extends ServiceLocatorAwareEntity implements InputFilterAwareInterface
 {
 
     /**
@@ -527,6 +527,15 @@ class User implements InputFilterAwareInterface
     public function isActive() 
     {
         return ($this->status == self::STATUS_VALIDATED) ? TRUE: FALSE;
+    }
+
+
+    
+    public function getDeposits() 
+    {
+        $em = $this->sm->get('Doctrine\ORM\EntityManager');
+        $total = $em->getRepository('Core\Entity\Deposit')->getTotalByUser($this);
+        return $total;
     }
 
 }

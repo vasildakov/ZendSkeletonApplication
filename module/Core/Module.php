@@ -43,7 +43,16 @@ class Module {
             },2
         );         
 
+
+        // Doctrine’s event manager offers a postLoad event which is called after the entity has been loaded.
+        // see: http://michaelthessel.com/injecting-zf2-service-manager-into-doctrine-entities/
+        // see: http://docs.doctrine-project.org/en/2.0.x/reference/events.html
+        $entityManager = $serviceManager->get('doctrine.entitymanager.orm_default');
+        $evm = $entityManager->getEventManager();
+        $evm->addEventListener(array(\Doctrine\ORM\Events::postLoad), new \Core\Entity\ServiceManagerListener($serviceManager));
+
     }
+
 
 
     public function getConfig()
@@ -127,6 +136,7 @@ class Module {
             ),
         );
     } 
+
 
     public function getAutoloaderConfig()
     {

@@ -5,10 +5,10 @@ namespace Core\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Click
+ * Deposit
+ * @ORM\Entity
  * @ORM\Entity(repositoryClass="Core\Repository\DepositRepository") 
  * @ORM\Table(name="deposit", options={"engine" = "MyISAM" })
- * @ORM\Entity
  */
 class Deposit
 {

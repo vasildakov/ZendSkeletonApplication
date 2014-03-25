@@ -52,6 +52,7 @@ class UserRepository extends EntityRepository
     }
 
 
+
     /**
      * Returns last registered users
      * 
@@ -97,6 +98,7 @@ class UserRepository extends EntityRepository
 
         return $result;
     }
+
 
     /**
      * @param \Core\Entity\Language $language
